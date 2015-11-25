@@ -16,38 +16,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tvDayDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingRight="16dp"
+                android:layout_gravity="center_horizontal"
                 android:paddingBottom="16dp"
                 android:text="Day"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/tvDataDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data"
-
                 android:layout_gravity="center_horizontal"
-                android:gravity="center" />
+                android:text="Data"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/tvTimeDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="time"
                 android:layout_gravity="center_horizontal"
                 android:paddingTop="15dp"
-                android:gravity="center"
+                android:text="time"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
@@ -55,9 +51,9 @@
             android:id="@+id/ivImageDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dunno"
             android:paddingRight="16dp"
-            android:paddingTop="16dp" />
+            android:paddingTop="16dp"/>
+<!--            android:src="@drawable/dunno" -->
 
     </LinearLayout>
 
@@ -65,18 +61,17 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="right"
         android:layout_gravity="right"
-        >
+        android:gravity="right"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvTemperatureDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="15dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Temp" />
+            android:text="Temp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:id="@+id/tvWeatherDetail"
@@ -86,18 +81,20 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
+            android:id="@+id/tvWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wind direction"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
             android:id="@+id/tvWindSpeed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wind speed"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android:id="@+id/tvWind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wind"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+
         <TextView
             android:id="@+id/tvPressure"
             android:layout_width="wrap_content"

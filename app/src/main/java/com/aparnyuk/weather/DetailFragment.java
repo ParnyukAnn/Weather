@@ -11,11 +11,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-
 public class DetailFragment extends Fragment {
     WeatherInformation w = null;
 
@@ -45,44 +40,77 @@ public class DetailFragment extends Fragment {
         if (weather != null) {
             Gson gson = new Gson();
             w = gson.fromJson(weather, WeatherInformation.class);
-
-        ((TextView) v.findViewById(R.id.tvTimeDetail)).setText((w.dt_txt).substring(11, 16));
-        ((TextView) v.findViewById(R.id.tvDataDetail)).setText((w.dt_txt).substring(0, 10));
-        String des = w.weather[0].description;
-        des = des.substring(0, 1).toUpperCase() + des.substring(1);
-        ((TextView) v.findViewById(R.id.tvWeatherDetail)).setText(des);
-        if (Math.round(w.main.temp) > 0) {
-            ((TextView) v.findViewById(R.id.tvTemperatureDetail)).setText(" +" + Math.round(w.main.temp) + "C");
-        } else {
-            ((TextView) v.findViewById(R.id.tvTemperatureDetail)).setText(" " + Math.round(w.main.temp) + "C");
-        }
-        ((TextView) v.findViewById(R.id.tvPressure)).setText("Атм. давл.: " + Math.round(w.main.pressure) + " мм рт.ст.");
-        ((TextView) v.findViewById(R.id.tvWindSpeed)).setText("Скорость ветра: " + Math.round(w.wind.speed) + " м/с");
-        ((TextView) v.findViewById(R.id.tvWind)).setText("Направление ветра: " + w.wind.deg);
-        ((TextView) v.findViewById(R.id.tvHumidity)).setText("Влажность: " + w.main.humidity + " %");
-
-        Picasso.with(getContext())
-                .load("http://openweathermap.org/img/w/" + w.weather[0].icon + ".png")
-                .placeholder(R.drawable.dunno)
-                .error(R.drawable.dunno)
-                .into((ImageView) v.findViewById(R.id.ivImageDetail));
-
-        try {
-            String dt = w.dt_txt;
-            Locale locale = new Locale("ru");
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = format.parse(dt);
-            Calendar c = Calendar.getInstance();
-            c.set(date.getYear(), date.getMonth(), date.getDay());
-             dt = c.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, locale);
-            dt = dt.substring(0, 1).toUpperCase() + dt.substring(1);
-            ((TextView) v.findViewById(R.id.tvDayDetail)).setText(dt);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            showDetailInfo(v);
         }
         return v;
     }
 
+    private void showDetailInfo(View v) {
+        ((TextView) v.findViewById(R.id.tvTimeDetail)).setText(w.printTime());
+        ((TextView) v.findViewById(R.id.tvDataDetail)).setText(w.printDate());
+        ((TextView) v.findViewById(R.id.tvDayDetail)).setText(w.printDay(false));
+        ((TextView) v.findViewById(R.id.tvWeatherDetail)).setText(w.printDescription(false));
+        ((TextView) v.findViewById(R.id.tvTemperatureDetail)).setText(w.printTemp());
+        ((TextView) v.findViewById(R.id.tvPressure)).setText(w.printPressure());
+        ((TextView) v.findViewById(R.id.tvWindSpeed)).setText(w.printWindSpeed());
+        ((TextView) v.findViewById(R.id.tvWind)).setText(w.printWindDirection());
+        ((TextView) v.findViewById(R.id.tvHumidity)).setText(w.printHumidity());
 
+        Picasso.with(getContext())
+                //.load("http://openweathermap.org/img/w/" + w.weather[0].icon + ".png")
+                .load(picResource(w.weather[0].id, w.isNight()))
+               // .placeholder(R.drawable.dunno)
+               // .error(R.drawable.dunno)
+                .into((ImageView) v.findViewById(R.id.ivImageDetail));
+    }
+
+    private int picResource(int code, boolean isNight) {
+        int res = R.drawable.dunno;
+        if (isNight) {
+            if ((code >= 200) && (code < 300)) {
+                res = R.drawable.p11n;
+            } else if (((code >= 300) && (code < 400)) || ((code >= 520) && (code <= 531))) {
+                res = R.drawable.p09n;
+            } else if ((code >= 500) && (code <= 504)) {
+                res = R.drawable.p10n;
+            } else if ((code == 511) || ((code >= 600) && (code < 700))) {
+                res = R.drawable.p13n;
+            } else if ((code >= 700) && (code < 800)) {
+                res = R.drawable.p50n;
+            } else if (code == 800) {
+                res = R.drawable.p01n;
+            } else if (code == 801) {
+                res = R.drawable.p02n;
+            } else if (code == 802) {
+                res = R.drawable.p03n;
+            } else if ((code == 803) || (code == 804)) {
+                res = R.drawable.p04n;
+            } else {;
+                res = R.drawable.dunno;
+            }
+        } else {
+            if ((code >= 200) && (code < 300)) {
+                res = R.drawable.p11d;
+            } else if (((code >= 300) && (code < 400)) || ((code >= 520) && (code <= 531))) {
+                res = R.drawable.p09d;
+            } else if ((code >= 500) && (code <= 504)) {
+                res = R.drawable.p10d;
+            } else if ((code == 511) || ((code >= 600) && (code < 700))) {
+                res = R.drawable.p13d;
+            } else if ((code >= 700) && (code < 800)) {
+                res = R.drawable.p50d;
+            } else if (code == 800) {;
+                res = R.drawable.p01d;
+            } else if (code == 801) {
+                res = R.drawable.p02d;
+            } else if (code == 802) {
+                res = R.drawable.p03d;
+            } else if ((code == 803) || (code == 804)) {
+                res = R.drawable.p04d;
+            } else {
+                res = R.drawable.dunno;
+            }
+        }
+        return res;
+    }
 }
