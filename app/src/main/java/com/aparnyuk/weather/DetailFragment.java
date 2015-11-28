@@ -2,23 +2,29 @@ package com.aparnyuk.weather;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
+import com.aparnyuk.weather.ModelJR.WeatherInformation;
 import com.squareup.picasso.Picasso;
 
-public class DetailFragment extends Fragment {
-    WeatherInformation w = null;
+import io.realm.Realm;
 
-    public static DetailFragment newInstance(int pos, String wth) {
+
+public class DetailFragment extends Fragment {
+    WeatherInformation wi = null;
+    private static final String TAG = "myLogs";
+    Realm realm;
+
+    public static DetailFragment newInstance(int pos, String k) {
         DetailFragment details = new DetailFragment();
         Bundle args = new Bundle();
         args.putInt("position", pos);
-        args.putString("weather", wth);
+        args.putString("key", k);
         details.setArguments(args);
         return details;
     }
@@ -27,25 +33,27 @@ public class DetailFragment extends Fragment {
         return getArguments().getInt("position", 0);
     }
 
-    String getWeather() {
-        return getArguments().getString("weather", null);
+    String getKey() {
+        return getArguments().getString("key", null);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
-
-        String weather = getWeather();
-        if (weather != null) {
-            Gson gson = new Gson();
-            w = gson.fromJson(weather, WeatherInformation.class);
+        realm = Realm.getInstance(getContext());
+        String key = getKey();
+        if (key != null) {
+            wi = realm.where(WeatherInformation.class).equalTo("dt", key).findFirst();
             showDetailInfo(v);
         }
         return v;
     }
 
     private void showDetailInfo(View v) {
+        PrintInfo w = new PrintInfo(wi);
+        Log.d(TAG, "Detail fragment showDetailInfo");
+
         ((TextView) v.findViewById(R.id.tvTimeDetail)).setText(w.printTime());
         ((TextView) v.findViewById(R.id.tvDataDetail)).setText(w.printDate());
         ((TextView) v.findViewById(R.id.tvDayDetail)).setText(w.printDay(false));
@@ -57,11 +65,16 @@ public class DetailFragment extends Fragment {
         ((TextView) v.findViewById(R.id.tvHumidity)).setText(w.printHumidity());
 
         Picasso.with(getContext())
-                //.load("http://openweathermap.org/img/w/" + w.weather[0].icon + ".png")
-                .load(picResource(w.weather[0].id, w.isNight()))
-               // .placeholder(R.drawable.dunno)
-               // .error(R.drawable.dunno)
+                .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
+                .placeholder(R.drawable.dunno)
+                .error(R.drawable.dunno)
                 .into((ImageView) v.findViewById(R.id.ivImageDetail));
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
     private int picResource(int code, boolean isNight) {
@@ -85,7 +98,7 @@ public class DetailFragment extends Fragment {
                 res = R.drawable.p03n;
             } else if ((code == 803) || (code == 804)) {
                 res = R.drawable.p04n;
-            } else {;
+            } else {
                 res = R.drawable.dunno;
             }
         } else {
@@ -99,7 +112,7 @@ public class DetailFragment extends Fragment {
                 res = R.drawable.p13d;
             } else if ((code >= 700) && (code < 800)) {
                 res = R.drawable.p50d;
-            } else if (code == 800) {;
+            } else if (code == 800) {
                 res = R.drawable.p01d;
             } else if (code == 801) {
                 res = R.drawable.p02d;

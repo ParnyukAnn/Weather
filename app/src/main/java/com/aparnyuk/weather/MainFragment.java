@@ -1,6 +1,8 @@
 package com.aparnyuk.weather;
 
 import android.app.Activity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -8,25 +10,35 @@ import android.widget.ListView;
 
 import android.os.AsyncTask;
 import android.content.Context;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
+
 import android.util.Log;
+import android.widget.Toast;
+
+import com.aparnyuk.weather.ModelJR.WeatherInformation;
 import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.realm.Realm;
+
+
 public class MainFragment extends ListFragment {
     private static final String TAG = "myLogs";
     private WeatherAdapter weatherAdapter;
+    private Realm realm;
 
     public interface onItemClickListener {
-        public void itemClick(int position,String weather);
+        public void itemClick(int position, String weather);
     }
 
     onItemClickListener listener;
@@ -35,10 +47,30 @@ public class MainFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(TAG, "in MainFragment onCreate");
-        DownloadInfo weatherTask = new DownloadInfo(getActivity());
-        weatherTask.execute();
+        realm = Realm.getInstance(getContext());
 
+        Log.d(TAG, "in MainFragment onCreate");
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(getActivity().CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        if ((savedInstanceState == null) && (netInfo != null && netInfo.isConnectedOrConnecting())) {
+            Toast.makeText(getActivity(), "Есть соединение с интернетом!", Toast.LENGTH_LONG).show();
+            // Удаление старой базы
+            realm.beginTransaction();
+            realm.allObjects(WeatherInformation.class).clear();
+            realm.commitTransaction();
+            // Скачивание данных и запись в базу
+            DownloadInfo weatherTask = new DownloadInfo(getActivity());
+            weatherTask.execute();
+        } else {
+            // Загрузка последней инф. из базы если есть
+            if (realm.allObjects(WeatherInformation.class).size() != 0) {
+                weatherAdapter = new WeatherAdapter(getContext(), realm.allObjects(WeatherInformation.class));
+                setListAdapter(weatherAdapter);
+                Toast.makeText(getActivity(), "Загрузка данных из БД", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity(), "Нет данных в БД", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
@@ -48,17 +80,21 @@ public class MainFragment extends ListFragment {
     }
 
     @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        Gson gson = new Gson();
-        String weather = gson.toJson(weatherAdapter.getItem(position));
-
-        listener.itemClick(position,weather);
+    public void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Log.d(TAG, "onListItemClick in MainFragment");
+        WeatherInformation wthObj = (WeatherInformation) weatherAdapter.getItem(position);
+        String key = wthObj.getDt();
+        listener.itemClick(position, key);
+    }
 
-    public class DownloadInfo extends AsyncTask<Void, Void, ArrayList<WeatherInformation>> {
+    public class DownloadInfo extends AsyncTask<Void, Void, String> {
         public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=710791&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=ru&units=metric";
         private Context context;
 
@@ -68,14 +104,13 @@ public class MainFragment extends ListFragment {
 
 
         @Override
-        protected ArrayList<WeatherInformation> doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
 
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
             String jsonStr = null;
             Log.d(TAG, "start connection");
             try {
-
                 connection = (HttpURLConnection) new URL(API_URL).openConnection();
                 connection.setRequestMethod("GET");
                 connection.setDoInput(true);
@@ -93,21 +128,22 @@ public class MainFragment extends ListFragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return JsonToWeatherInformationList(jsonStr);
+            return jsonStr;
         }
 
-        private ArrayList<WeatherInformation> JsonToWeatherInformationList(String jsonStr) {
+        private List<WeatherInformation> JsonToWeatherInformationList(String jsonStr) {
             try {
                 Gson gson = new Gson();
                 JSONObject jObject = new JSONObject(jsonStr);
-                ArrayList<WeatherInformation> wList = new ArrayList<>();
                 JSONArray list = jObject.getJSONArray("list");
+                Log.d(TAG, list.toString());
                 for (int i = 0; i < list.length(); i++) {
                     JSONObject jObj = list.getJSONObject(i);
-                    wList.add(gson.fromJson(jObj.toString(), WeatherInformation.class));
+                    realm.beginTransaction();
+                    realm.createObjectFromJson(WeatherInformation.class, jObj);
+                    realm.commitTransaction();
                 }
-                Log.d(TAG, "OK");
-                return wList;
+                return realm.allObjects(WeatherInformation.class);
             } catch (JSONException e) {
                 Log.d(TAG, e.getMessage());
                 e.printStackTrace();
@@ -118,14 +154,13 @@ public class MainFragment extends ListFragment {
             Log.d(TAG, "NULL");
             return null;
         }
-// !!! ВОПРОС: есть ли корректная передача даных (result) из потока?
+
         @Override
-        protected void onPostExecute(ArrayList<WeatherInformation> result) {
-            Log.d(TAG, "Create adapter");
-            /*WeatherAdapter*/ weatherAdapter = new WeatherAdapter(context, result);
-            setListAdapter (weatherAdapter);
-            Log.d(TAG, "Create adapter - OK");
+        protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            Log.d(TAG, "Create adapter");
+            weatherAdapter = new WeatherAdapter(context, JsonToWeatherInformationList(result));
+            setListAdapter(weatherAdapter);
         }
     }
 }

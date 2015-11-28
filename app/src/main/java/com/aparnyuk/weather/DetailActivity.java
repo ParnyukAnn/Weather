@@ -11,7 +11,7 @@ public class DetailActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
         if (getResources().getConfiguration().orientation
-                == Configuration.ORIENTATION_LANDSCAPE&& isLarge()) {
+                == Configuration.ORIENTATION_LANDSCAPE && isLarge()) {
             finish();
             return;
         }
@@ -19,11 +19,11 @@ public class DetailActivity extends FragmentActivity {
         if (savedInstanceState == null) {
 
             DetailFragment details = DetailFragment.newInstance(getIntent().getIntExtra("position", 0),
-                    getIntent().getStringExtra("weather"));
+                    getIntent().getStringExtra("key"));
             getSupportFragmentManager().beginTransaction().add(android.R.id.content, details).commit();
         }
-
     }
+
     boolean isLarge() {
         return (getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)

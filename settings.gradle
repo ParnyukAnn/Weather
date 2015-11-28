@@ -1,1 +1,1 @@
-include ':app', ':picasso-2.5.2', ':gson-2.4'
+include ':app', ':picasso-2.5.2', ':gson-2.4', ':realm-android-0.85.1'

@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/gson-2.4" />
             <option value="$PROJECT_DIR$/picasso-2.5.2" />
+            <option value="$PROJECT_DIR$/realm-android-0.85.1" />
           </set>
         </option>
       </GradleProjectSettings>
