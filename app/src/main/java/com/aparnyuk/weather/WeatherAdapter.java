@@ -14,7 +14,6 @@ import com.aparnyuk.weather.ModelJR.WeatherInformation;
 import com.squareup.picasso.Picasso;
 
 
-
 public class WeatherAdapter extends BaseAdapter {
     Context ctx;
     LayoutInflater lInflater;
@@ -44,30 +43,48 @@ public class WeatherAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-
+        public ImageView ivImage;
+        public TextView tvTime;
+        public TextView tvData;
+        public TextView tvDay;
+        public TextView tvWeather;
+        public TextView tvTemperature;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        ViewHolder holder;
+
         View v = convertView;
         if (v == null) {
             v = lInflater.inflate(R.layout.item, parent, false);
+            holder = new ViewHolder();
+            holder.ivImage = (ImageView) v.findViewById(R.id.ivImage);
+            holder.tvTime = (TextView) v.findViewById(R.id.tvTime);
+            holder.tvData = (TextView) v.findViewById(R.id.tvData);
+            holder.tvDay = (TextView) v.findViewById(R.id.tvDay);
+            holder.tvWeather = (TextView) v.findViewById(R.id.tvWeather);
+            holder.tvTemperature = (TextView) v.findViewById(R.id.tvTemperature);
+            v.setTag(holder);
+        } else {
+            holder = (ViewHolder) v.getTag();
         }
 
         PrintInfo w = new PrintInfo(getWeatherInformation(position));
 
-        ((TextView) v.findViewById(R.id.tvTime)).setText(w.printTime());
-        ((TextView) v.findViewById(R.id.tvData)).setText(w.printDate());
-        ((TextView) v.findViewById(R.id.tvDay)).setText(w.printDay(true));
-        ((TextView) v.findViewById(R.id.tvWeather)).setText(w.printDescription(true));
-        ((TextView) v.findViewById(R.id.tvTemperature)).setText(w.printTemp());
+        holder.tvTime.setText(w.printTime());
+        holder.tvData.setText(w.printDate());
+        holder.tvDay.setText(w.printDay(true));
+        holder.tvWeather.setText(w.printDescription(true));
+        holder.tvTemperature.setText(w.printTemp());
 
         Picasso.with(ctx)
                 .load("http://openweathermap.org/img/w/" + w.getIcon() + ".png")
-                .placeholder(R.drawable.dunno)
-                .error(R.drawable.dunno)
-                .into((ImageView) v.findViewById(R.id.ivImage));
+            //  .placeholder(R.drawable.dunno)
+            //  .error(R.drawable.dunno)
+            //  .into((ImageView) v.findViewById(R.id.ivImage));
+                .into(holder.ivImage);
         return v;
     }
 

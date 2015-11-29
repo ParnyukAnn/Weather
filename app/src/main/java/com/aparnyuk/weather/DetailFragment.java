@@ -66,8 +66,8 @@ public class DetailFragment extends Fragment {
 
         Picasso.with(getContext())
                 .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
-                .placeholder(R.drawable.dunno)
-                .error(R.drawable.dunno)
+            //    .placeholder(R.drawable.dunno)
+            //    .error(R.drawable.dunno)
                 .into((ImageView) v.findViewById(R.id.ivImageDetail));
     }
 
