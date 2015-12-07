@@ -4,13 +4,16 @@ import com.aparnyuk.weather.MainFragment.onItemClickListener;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import io.realm.Realm;
 
-public class MainActivity extends FragmentActivity implements
-        onItemClickListener {
+public class MainActivity extends AppCompatActivity
+        implements onItemClickListener {
 
     int position = 0;
     String key = null;
@@ -23,6 +26,11 @@ public class MainActivity extends FragmentActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setLogo(R.mipmap.ic_launcher_2);
+
         Log.d(TAG, "onCreate in MainActivity");
 
         realm = Realm.getInstance(this);
@@ -43,7 +51,6 @@ public class MainActivity extends FragmentActivity implements
         if (withDetails) {
             DetailFragment details = (DetailFragment) getSupportFragmentManager()
                     .findFragmentById(R.id.container);
-//!!
             if (details == null || details.getPosition() != pos) {
                 details = DetailFragment.newInstance(pos, k);
                 getSupportFragmentManager()
@@ -74,4 +81,23 @@ public class MainActivity extends FragmentActivity implements
         outState.putInt("position", position);
         outState.putString("key", key);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == R.id.action_refresh) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

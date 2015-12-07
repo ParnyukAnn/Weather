@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="15dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:paddingTop="15dp">
+    android:paddingBottom="@dimen/little"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/little">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,37 +16,34 @@
 
         <TextView
             android:id="@+id/tvDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Day"
-            android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+            style="@style/SimpleMediumText" />
 
         <TextView
             android:id="@+id/tvData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Data"></TextView>
+            style="@style/SimpleText" />
 
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="time"
-            android:paddingTop="15dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+            style="@style/LargeText"
+            android:fontFamily="sans-serif-light"
+            android:paddingTop="@dimen/little" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvTemperature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:text="Temp"
-        android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="28sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -56,15 +51,12 @@
             android:id="@+id/ivImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"/>
-        <!--android:src="@drawable/dunno"/> -->
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/tvWeather"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"></TextView>
-
+            style="@style/SimpleText"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="@dimen/little" />
     </LinearLayout>
 </LinearLayout>
-

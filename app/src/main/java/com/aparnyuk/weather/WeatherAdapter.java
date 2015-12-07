@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aparnyuk.weather.ModelJR.Weather;
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
 import com.squareup.picasso.Picasso;
 
@@ -79,16 +80,47 @@ public class WeatherAdapter extends BaseAdapter {
         holder.tvWeather.setText(w.printDescription(true));
         holder.tvTemperature.setText(w.printTemp());
 
+        WeatherInformation wi = this.getWeatherInformation(position);
         Picasso.with(ctx)
-                .load("http://openweathermap.org/img/w/" + w.getIcon() + ".png")
-            //  .placeholder(R.drawable.dunno)
-            //  .error(R.drawable.dunno)
-            //  .into((ImageView) v.findViewById(R.id.ivImage));
+                //.load("http://openweathermap.org/img/w/" + w.getIcon() + ".png")
+                .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
+                //.placeholder(R.drawable.dunno)
+                //.error(R.drawable.dunno)
+                //.into((ImageView) v.findViewById(R.id.ivImage));
                 .into(holder.ivImage);
         return v;
     }
 
     private WeatherInformation getWeatherInformation(int position) {
         return ((WeatherInformation) getItem(position));
+    }
+
+    private int picResource(int code, boolean isNight) {
+        int res = R.drawable.dunno;
+        if ((code >= 200) && (code < 300)) {
+            res = R.drawable.ic_weather_lightning_grey600_36dp;
+        } else if (((code >= 300) && (code < 400)) || ((code >= 520) && (code <= 531))) {
+            res = R.drawable.ic_weather_pouring_grey600_36dp;
+        } else if ((code >= 500) && (code <= 504)) {
+            res = R.drawable.ic_weather_rainy_grey600_36dp;
+        } else if ((code == 511) || ((code >= 600) && (code < 700))) {
+            res = R.drawable.ic_weather_snowy_grey600_36dp;
+        } else if ((code >= 700) && (code < 800)) {
+            res = R.drawable.ic_weather_fog_grey600_36dp;
+        } else if (code == 800) {
+            res = R.drawable.ic_weather_sunny_grey600_36dp;
+        } else if (code == 801) {
+            res = R.drawable.ic_weather_partlycloudy_grey600_36dp;
+        } else if (code == 802) {
+            res = R.drawable.ic_weather_partlycloudy_grey600_36dp;
+        } else if ((code == 803) || (code == 804)) {
+            res = R.drawable.ic_weather_cloudy_grey600_36dp;
+        } else {
+            res = R.drawable.dunno;
+        }
+
+        if ((isNight) && (code == 800))
+            res = R.drawable.ic_weather_night_grey600_36dp;
+        return res;
     }
 }

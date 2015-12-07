@@ -18,15 +18,15 @@ public class PrintInfo {
     public String printTemp() {
         String temp = "";
         if (Math.round(w.getMain().getTemp()) > 0) {
-            temp = " +" + Math.round(w.getMain().getTemp()) + "C";
+            temp = " +" + Math.round(w.getMain().getTemp()) + "C°";
         } else {
-            temp = " " + Math.round(w.getMain().getTemp()) + "C";
+            temp = " " + Math.round(w.getMain().getTemp()) + "C°";
         }
         return temp;
     }
 
     public String printPressure() {
-        return "Атм. давление: " + Math.round(w.getMain().getPressure()) + " мм.рт.ст.";
+        return "Атм. давл.: " + Math.round(w.getMain().getPressure()*0.7500637) + " мм.рт.ст.";
     }
 
     public String printHumidity() {
@@ -47,7 +47,7 @@ public class PrintInfo {
     }
 
     public String printWindSpeed() {
-        return "скорость ветра: " + Math.round(w.getWind().getSpeed()) + " м/с";
+        return "Cкорость ветра: " + Math.round(w.getWind().getSpeed()) + " м/с";
     }
 
     public String printWindDirection() {
@@ -70,7 +70,30 @@ public class PrintInfo {
         } else if ((d >= 273) && (d < 338)) {
             direct = "северо-западный"; // 315°
         }
-        direct = "Ветер " + direct + " (" + d + "°)" + ",";
+        direct = "Ветер " + direct + ": " + d + "°";
+        return direct;
+    }
+
+    public int showWindDirection() {
+        int d = Math.round(w.getWind().getDeg());
+        int direct = 0;
+        if (((d >= 0) && (d < 23)) || ((d >= 338) && (d <= 360))) {
+            direct = R.drawable.ic_arrow_up_grey600_24dp;        // северный (0° и 360°)
+        } else if ((d >= 23) && (d < 68)) {
+            direct = R.drawable.ic_arrow_top_right_grey600_24dp; // северо-восточный	45°
+        } else if ((d >= 68) && (d < 113)) {
+            direct = R.drawable.ic_arrow_right_grey600_24dp; // восточный 90°
+        } else if ((d >= 113) && (d < 158)) {
+            direct = R.drawable.ic_arrow_bottom_right_grey600_24dp; // юго-восточный" 135°
+        } else if ((d >= 158) && (d < 203)) {
+            direct = R.drawable.ic_arrow_down_grey600_24dp; // западый 180°
+        } else if ((d >= 203) && (d < 248)) {
+            direct = R.drawable.ic_arrow_bottom_left_grey600_24dp; // юго-западый 225°
+        } else if ((d >= 248) && (d < 273)) {
+            direct = R.drawable.ic_arrow_left_grey600_24dp; // 270°
+        } else if ((d >= 273) && (d < 338)) {
+            direct = R.drawable.ic_arrow_top_left_grey600_24dp; // северо-западный" 315°
+        }
         return direct;
     }
 

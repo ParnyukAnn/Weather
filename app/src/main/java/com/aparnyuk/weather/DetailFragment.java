@@ -2,6 +2,7 @@ package com.aparnyuk.weather;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ public class DetailFragment extends Fragment {
     WeatherInformation wi = null;
     private static final String TAG = "myLogs";
     Realm realm;
+
 
     public static DetailFragment newInstance(int pos, String k) {
         DetailFragment details = new DetailFragment();
@@ -40,6 +42,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView in DetailFragment");
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
         realm = Realm.getInstance(getContext());
         String key = getKey();
@@ -54,6 +57,7 @@ public class DetailFragment extends Fragment {
         PrintInfo w = new PrintInfo(wi);
         Log.d(TAG, "Detail fragment showDetailInfo");
 
+        ((CardView) v.findViewById(R.id.card_view)).setVisibility(View.VISIBLE);
         ((TextView) v.findViewById(R.id.tvTimeDetail)).setText(w.printTime());
         ((TextView) v.findViewById(R.id.tvDataDetail)).setText(w.printDate());
         ((TextView) v.findViewById(R.id.tvDayDetail)).setText(w.printDay(false));
@@ -66,9 +70,23 @@ public class DetailFragment extends Fragment {
 
         Picasso.with(getContext())
                 .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
-            //    .placeholder(R.drawable.dunno)
-            //    .error(R.drawable.dunno)
+                        //.placeholder(R.drawable.dunno)
+                        //.error(R.drawable.dunno)
                 .into((ImageView) v.findViewById(R.id.ivImageDetail));
+
+        Picasso.with(getContext())
+                .load(w.showWindDirection())
+                .into((ImageView) v.findViewById(R.id.picWind));
+        Picasso.with(getContext())
+                .load(R.drawable.ic_weather_windy_grey600_24dp)
+                .into((ImageView) v.findViewById(R.id.picWindSpeed));
+        Picasso.with(getContext())
+                .load(R.drawable.ic_water_percent_grey600_24dp)
+                .into((ImageView) v.findViewById(R.id.picHumidity));
+        Picasso.with(getContext())
+                .load(R.drawable.ic_thermometer_lines_grey600_24dp)
+                .into((ImageView) v.findViewById(R.id.picPressure));
+        Log.d(TAG, "Detail fragment after showDetailInfo");
     }
 
     @Override

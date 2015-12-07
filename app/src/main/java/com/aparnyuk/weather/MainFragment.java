@@ -105,7 +105,6 @@ public class MainFragment extends ListFragment {
 
         @Override
         protected String doInBackground(Void... params) {
-
             HttpURLConnection connection = null;
             BufferedReader bufferedReader = null;
             String jsonStr = null;
