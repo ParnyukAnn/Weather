@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity
     boolean withDetails = true;
     private static final String TAG = "myLogs";
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +30,12 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setLogo(R.mipmap.ic_launcher_2);
 
-        Log.d(TAG, "onCreate in MainActivity");
-
+        Log.d(TAG, "onCreate in MainActivity, notify don't work - "+ NotifyService.state);
         //startService(new Intent(this, NotificationService.class));
-        startService(new Intent(this, NotifyService.class));
 
+        if (NotifyService.state) {
+            startService(new Intent(this, NotifyService.class));
+        }
         if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
             key = savedInstanceState.getString("key");

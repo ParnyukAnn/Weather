@@ -23,6 +23,7 @@ public class NotificationService extends IntentService {
     private final int NOTIFICATION_ID = 73;
 
 
+
     public NotificationService() {
         super("UpdateService");
     }
@@ -32,6 +33,7 @@ public class NotificationService extends IntentService {
         super.onCreate();
         nm = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Log.d(TAG, "NotificationService - onCreate");
+
     }
 
     @Override
@@ -54,7 +56,7 @@ public class NotificationService extends IntentService {
                     .setWhen(System.currentTimeMillis()) // время уведомления - текущее
                     .setAutoCancel(true) // для автоматического закрытия
                     .setContentTitle("Sun&Rain")
-                    .setContentText("Нажмите чтобы обновить информацию о погоде")
+                    .setContentText("Нажмите чтобы обновить информацию о погоде. Будет показано только 10 уведомлений.")
                     .addAction(R.drawable.ic_refresh_white_24dp, "Обновить", downloadPendingIntent);
             Notification notification = builder.build();
             nm.notify(NOTIFICATION_ID, notification);
