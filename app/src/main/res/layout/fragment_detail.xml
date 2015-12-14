@@ -99,7 +99,7 @@
                         android:id="@+id/tvWeatherDetail"
                         style="@style/SimpleMediumText"
                         android:gravity="center_horizontal"
-                        android:textColor="@color/colorPrimaryText"/>
+                        android:textColor="@color/colorPrimaryText" />
                 </TableRow>
 
                 <TableRow
@@ -123,7 +123,8 @@
 
                     <ImageView
                         android:id="@+id/picWindSpeed"
-                        style="@style/SimpleImage" />
+                        style="@style/SimpleImage"
+                        android:src="@drawable/weather_windy" />
 
                     <TextView
                         android:id="@+id/tvWindSpeed"
@@ -137,7 +138,9 @@
 
                     <ImageView
                         android:id="@+id/picPressure"
-                        style="@style/SimpleImage" />
+                        style="@style/SimpleImage"
+                        android:src="@drawable/thermometer_lines" />
+                    <!-- android:src="@drawable/ic_thermometer_lines_grey600_24dp"/>-->
 
                     <TextView
                         android:id="@+id/tvPressure"
@@ -151,7 +154,8 @@
 
                     <ImageView
                         android:id="@+id/picHumidity"
-                        style="@style/SimpleImage" />
+                        style="@style/SimpleImage"
+                        android:src="@drawable/water_percent" />
 
                     <TextView
                         android:id="@+id/tvHumidity"

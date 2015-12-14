@@ -1,6 +1,9 @@
 package com.aparnyuk.weather;
 
 import com.aparnyuk.weather.MainFragment.onItemClickListener;
+import com.aparnyuk.weather.service.NotificationService;
+import com.aparnyuk.weather.service.NotifyService;
+import com.aparnyuk.weather.service.UpdateService;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +13,6 @@ import android.view.Menu;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import io.realm.Realm;
-
 public class MainActivity extends AppCompatActivity
         implements onItemClickListener {
 
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity
     boolean withDetails = true;
     private static final String TAG = "myLogs";
 
-    Realm realm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity
 
         Log.d(TAG, "onCreate in MainActivity");
 
-        realm = Realm.getInstance(this);
+        //startService(new Intent(this, NotificationService.class));
+        startService(new Intent(this, NotifyService.class));
 
         if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
@@ -95,9 +96,10 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_refresh) {
+            Intent localIntent = new Intent(this, UpdateService.class);
+            startService(localIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

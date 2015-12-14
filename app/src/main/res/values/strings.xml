@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Weather</string>
+    <string name="app_name">Sun&amp;Rain</string>
     <string name="action_settings">Настройки</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="action_refresh">Обновление</string>
