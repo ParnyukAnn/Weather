@@ -1,6 +1,170 @@
 <resources>
     <string name="app_name">Sun&amp;Rain</string>
+    <string name="app_label">Погода</string>
     <string name="action_settings">Настройки</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="action_refresh">Обновление</string>
+    <string name="title_activity_settings">Настройки</string>
+
+    <!-- Strings for items and details-->
+    <string name="describe_temperature_plus"> +</string>
+    <string name="describe_temperature_minus"> </string>
+    <string name="describe_temperature_celsius">C°</string>
+    <string name="describe_pressure_begin">Атм. давл.:</string>
+    <string name="describe_pressure_end"> мм.рт.ст.</string>
+    <string name="describe_humidity_begin">Влажность воздуха:</string>
+    <string name="describe_humidity_end"> %</string>
+    <string name="describe_wind_speed_begin">Cкорость ветра: </string>
+    <string name="describe_wind_speed_end"> м/с</string>
+    <string name="describe_wind_direction_northern">северный</string>
+    <string name="describe_wind_direction_northeastern">северо-восточный</string>
+    <string name="describe_wind_direction_eastern">восточный</string>
+    <string name="describe_wind_direction_southeastern">юго-восточный</string>
+    <string name="describe_wind_direction_southern">южный</string>
+    <string name="describe_wind_direction_southwest">юго-западый</string>
+    <string name="describe_wind_direction_west">западный</string>
+    <string name="describe_wind_direction_northwestern">северо-западный</string>
+    <string name="describe_wind_direction_begin">Ветер </string>
+    <string name="describe_wind_direction_middle">: </string>
+    <string name="describe_wind_direction_end">°</string>
+    <string name="describe_point">.</string>
+    <string name="empty_field">Something</string>
+
+    <!--NOTIFICATION-->
+    <string name="notification_ticker">Дступны новые обновления погоды.</string>
+    <string name="notification_text">Дступны обновления.</string>
+    <string name="notification_long_text">Кликните на сообщении чтобы перейти в окно приложения или просто нажмите на кнопку чтобы обновить информацию о погоде.</string>
+    <string name="notification_update_button">Обновить</string>
+
+    <!-- PREFERENCES -->
+    <string name="pref_main_title">Основные</string>
+    <string name="pref_main_summary">Основные настройки</string>
+    <string name="pref_city_summary">Выберите город</string>
+    <string name="pref_city_title">Город</string>
+    <string name="pref_reset_summary">Очистить все настройки</string>
+    <string name="pref_reset_title">Сброс</string>
+    <string name="pref_notif_cat_summary">Уведомления</string>
+    <string name="pref_notif_cat_title">Уведомления</string>
+    <string name="pref_notif_summary_on">Включить уведомления</string>
+    <string name="pref_notif_summary_off">Виключить уведомления</string>
+    <string name="pref_notif_title">Уведомления</string>
+    <string name="pref_notif_freq_summary">Как часто обновлять данные</string>
+    <string name="pref_notif_freq_title">Частота</string>
+    <string name="pref_notif_sound_type_summary">Звук уведомлений</string>
+    <string name="pref_notif_sound_type_title">Звук</string>
+    <!-- Language-->
+    <string name="pref_language_title">Язык</string>
+    <string name="pref_language_summary">Необходимо перезапустить приложение чтобы изменения вступили в силу</string>
+    <string name="pref_lang_dialog_title">Выберите язык:</string>
+    <string name="pref_language_restart">Перезагрузка</string>
+
+    <string-array name="entries_lang">
+        <item>Английский</item>
+        <item>Русский</item>
+        <item>Украинский</item>
+        <item>Язык аппарата</item>
+    </string-array>
+    <string-array name="entry_values_lang">
+        <item>en</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>ru</item>
+    </string-array>
+
+    <!--Dialog-->
+    <string name="exit_dialog_title">Выход</string>
+    <string name="exit_dialog_message">Чтобы изменения вступили в силу необходимо перезапустить приложение</string>
+    <string name="exit_dialog_yes">Перезапуск</string>
+    <string name="exit_dialog_cancel">Сохранено</string>
+
+    <string name="network_dialog_title">Нет содинения</string>
+    <string name="network_dialog_message">Для смены языковых настроек необходимо соединение с интренетом</string>
+    <string name="network_dialog_cancel">Выход</string>
+
+
+    <string-array name="entries">
+        <item>Рингтон</item>
+        <item>Тихо</item>
+        <item>Вибрация</item>
+    </string-array>
+    <string-array name="entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+
+    <string-array name="entries_time">
+        <item>1 мин.</item>
+        <item>5 мин.</item>
+        <item>30 мин.</item>
+        <item>1 час</item>
+        <item>3 часа</item>
+        <item>12 часов</item>
+        <item>раз в сутки</item>
+    </string-array>
+    <string-array name="entry_time_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>10800000</item>
+        <item>43200000</item>
+        <item>86400000</item>
+    </string-array>
+
+    <string-array name="test_city">
+        <item>Винница</item> <!-- 0 -->
+        <item>Днепропетровск</item> <!-- 1 -->
+        <item>Донецк</item> <!-- 2 -->
+        <item>Житомир</item> <!-- 3 -->
+        <item>Запорожье</item> <!-- 4 -->
+        <item>Ивано-Франковск</item> <!-- 5 -->
+        <item>Кировоград</item><!-- 6 -->
+        <item>Луганск</item><!-- 7 -->
+        <item>Луцк</item><!-- 8 -->
+        <item>Львов</item><!-- 9 -->
+        <item>Николаев</item><!-- 10  -->
+        <item>Одесса</item><!-- 11 -->
+        <item>Полтава</item><!-- 12 -->
+        <item>Ровно</item><!-- 13 -->
+        <item>Сумы</item><!-- 14 -->
+        <item>Тернополь</item><!-- 15 -->
+        <item>Ужгород</item><!-- 16 -->
+        <item>Харьков</item><!-- 17 -->
+        <item>Херсон</item><!-- 18 -->
+        <item>Хмельницкий </item><!-- 19 -->
+        <item>Черкассы</item><!-- 20 -->
+        <item>Чернигов</item><!-- 21 -->
+        <item>Черновцы</item><!-- 22 -->
+    </string-array>
+    <string-array name="city_id">
+        <item>689558‎</item>
+        <item>709930</item>
+        <item>709717‎</item>
+        <item>686967</item>
+        <item>687700</item>
+        <item>707471</item>
+        <item>703448‎</item>
+        <item>705812</item>
+        <item>702658</item>
+        <item>702569</item>
+        <item>702550‎</item>
+        <item>700569‎</item>
+        <item>698740</item>
+        <item>696643</item>
+        <item>695594</item>
+        <item>692194‎</item>
+        <item>691650</item>
+        <item>690548</item>
+        <item>706483</item>
+        <item>706448</item>
+        <item>706369</item>
+        <item>710791</item>
+        <item>710719‎</item>
+        <item>710735</item>
+    </string-array>
+
+    <string name="content_description_arrow_dropdown">Ult</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.aparnyuk.weather;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,8 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.detail_action_settings) {
+            Intent intent = new Intent(this, PrefActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

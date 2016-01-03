@@ -1,0 +1,161 @@
+<resources>
+    <string name="app_name">Sun&amp;Rain</string>
+    <string name="app_label">Weather</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="action_refresh">Оновлення</string>
+    <string name="title_activity_settings">Налаштування</string>
+
+    <!-- Strings for items and details-->
+    <string name="describe_temperature_plus"> +</string>
+    <string name="describe_temperature_minus"> </string>
+    <string name="describe_temperature_celsius">C°</string>
+    <string name="describe_pressure_begin">Атм. тиск.:</string>
+    <string name="describe_pressure_end"> мм.рт.ст.</string>
+    <string name="describe_humidity_begin">Вологість повітря:</string>
+    <string name="describe_humidity_end"> %</string>
+    <string name="describe_wind_speed_begin">Швидкість вітру: </string>
+    <string name="describe_wind_speed_end"> м/с</string>
+    <string name="describe_wind_direction_northern">північний</string>
+    <string name="describe_wind_direction_northeastern">північно-східний</string>
+    <string name="describe_wind_direction_eastern">східний</string>
+    <string name="describe_wind_direction_southeastern">південно-східний</string>
+    <string name="describe_wind_direction_southern">південний</string>
+    <string name="describe_wind_direction_southwest">південно-західний</string>
+    <string name="describe_wind_direction_west">західний</string>
+    <string name="describe_wind_direction_northwestern">північно-західний</string>
+    <string name="describe_wind_direction_begin">Вітер </string>
+    <string name="describe_wind_direction_middle">: </string>
+    <string name="describe_wind_direction_end">°</string>
+    <string name="describe_point">.</string>
+    <string name="empty_field">Something</string>
+
+    <!--NOTIFICATION-->
+    <string name="notification_ticker">Дступні нові оновлення погоди.</string>
+    <string name="notification_text">Оновіть данні.</string>
+    <string name="notification_long_text">Натисніть на це повідомлення, щоб перейти в додаток або натисніть на кнопку, щоб просто оновити інформацію про погоду.</string>
+    <string name="notification_update_button">Оновити</string>
+
+    <!-- PREFERENCES -->
+    <string name="pref_main_title">Основні</string>
+    <string name="pref_main_summary">Головні налаштування</string>
+    <string name="pref_city_summary">Оберіть місто</string>
+    <string name="pref_city_title">Місто</string>
+    <string name="pref_reset_summary">Очистити всі налаштування</string>
+    <string name="pref_reset_title">Скинути</string>
+    <string name="pref_notif_cat_summary">Сповіщення.</string>
+    <string name="pref_notif_cat_title">Сповіщення</string>
+    <string name="pref_notif_summary_on">Ввімкнути сповіщення</string>
+    <string name="pref_notif_summary_off">Вимкнути сповіщення</string>
+    <string name="pref_notif_title">Сповіщення</string>
+    <string name="pref_notif_freq_summary">Як часто оновлювати данні.</string>
+    <string name="pref_notif_freq_title">Частота</string>
+    <string name="pref_notif_sound_type_summary">Звук сповіщення</string>
+    <string name="pref_notif_sound_type_title">Звук</string>
+
+    <!-- Language-->
+    <string name="pref_language_title">Мова</string>
+    <string name="pref_language_summary">Необхідно перезапустити додаток.</string>
+    <string name="pref_lang_dialog_title">Виберіть мову:</string>
+    <string name="pref_language_restart">Перезавантаження</string>
+
+    <string-array name="entries_lang">
+        <item>Англійска</item>
+        <item>Російська</item>
+        <item>Українска</item>
+        <item>Мова присторою</item>
+    </string-array>
+    <string-array name="entry_values_lang">
+        <item>en</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>default</item>
+    </string-array>
+
+    <string-array name="entries">
+        <item>Мелодія</item>
+        <item>Тихо</item>
+        <item>Вібрація</item>
+    </string-array>
+    <string-array name="entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="entries_time">
+        <item>1 хв.</item>
+        <item>5 хв.</item>
+        <item>30 хв.</item>
+        <item>1 г.</item>
+        <item>3 г.</item>
+        <item>12 г. </item>
+        <item>раз на добу</item>
+    </string-array>
+    <string-array name="entry_time_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>10800000</item>
+        <item>43200000</item>
+        <item>86400000 </item>
+    </string-array>
+
+    <string-array name="test_city">
+        <item>Вінниця‎</item>
+        <item>Дніпропетровськ</item>
+        <item>Донецьк‎</item>
+        <item>Житомир‎ </item>
+        <item>Запоріжжя‎</item>
+        <item>Івано-Франківськ</item>
+        <item>Київ‎</item>
+        <item>Кіровоград‎ </item>
+        <item>Луганськ‎</item>
+        <item>Луцьк‎</item>
+        <item>Львів‎</item>
+        <item>Миколаїв‎</item>
+        <item>Одеса</item>
+        <item>Полтава</item>
+        <item>Рівне</item>
+        <item>Суми‎</item>
+        <item>Тернопіль</item>
+        <item>Ужгород‎ </item>
+        <item>Харків</item>
+        <item>Херсон‎</item>
+        <item>Хмельницький‎</item>
+        <item>Черкаси‎</item>
+        <item>Чернівці‎</item>
+        <item>Чернігів</item>
+    </string-array>
+
+    <string-array name="city_id">
+        <item>689558‎</item>
+        <item>709930</item>
+        <item>709717‎</item>
+        <item>686967</item>
+        <item>687700</item>
+        <item>707471</item>
+        <item>703448‎</item>
+        <item>705812</item>
+        <item>702658</item>
+        <item>702569</item>
+        <item>702550‎</item>
+        <item>700569‎</item>
+        <item>698740</item>
+        <item>696643</item>
+        <item>695594</item>
+        <item>692194‎</item>
+        <item>691650</item>
+        <item>690548</item>
+        <item>706483</item>
+        <item>706448</item>
+        <item>706369</item>
+        <item>710791</item>
+        <item>710719‎</item>
+        <item>710735</item>
+    </string-array>
+
+    <string name="content_description_arrow_dropdown">Ult</string>
+
+</resources>

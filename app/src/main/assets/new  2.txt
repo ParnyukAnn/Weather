@@ -1,0 +1,123 @@
+<item>Винница</item>
+<item>Днепропетровск</item>
+<item>Донецк</item>
+<item>Житомир</item>
+<item>Запорожье</item>
+<item>Ивано-Франковск</item>
+<item>Кировоград</item>
+<item>Луганск</item>
+<item>Луцк</item>
+<item>Львов</item>
+<item>Николаев</item>
+<item>Одесса</item>
+<item>Полтава</item>
+<item>Ровно</item>
+<item>Сумы</item>
+<item>Тернополь</item>
+<item>Ужгород</item>
+<item>Харьков</item>
+<item>Херсон</item>
+<item>Хмельницкий </item>
+<item>Черкассы</item>
+<item>Чернигов</item>
+<item>Черновцы</item>
+
+<item>Вінниця‎</item>
+<item>Дніпропетровськ</item>
+<item>Донецьк‎</item> 
+<item>Житомир‎ </item>
+<item>Запоріжжя‎</item>
+<item>Івано-Франківськ</item>
+<item>Київ‎</item>
+<item>Кіровоград‎ </item>
+<item>Луганськ‎</item>
+<item>Луцьк‎</item>
+<item>Львів‎</item>
+<item>Миколаїв‎</item>
+<item>Одеса</item>
+<item>Полтава</item>
+<item>Рівне</item>
+<item>Суми‎</item>
+<item>Тернопіль</item>
+<item>Ужгород‎ </item>
+<item>Харків</item>
+<item>Херсон‎</item>
+<item>Хмельницький‎</item>
+<item>Черкаси‎</item>
+<item>Чернівці‎</item>
+<item>Чернігів</item>
+
+<item>Вінниця‎</item> {"_id":689558,"name":"Vinnytsya","country":"UA","coord":{"lon":28.48097,"lat":49.23278}},
+<item>Дніпропетровськ</item> {"_id":709930,"name":"Dnipropetrovsk","country":"UA","coord":{"lon":34.98333,"lat":48.450001}}
+<item>Донецьк‎</item> {"_id":709717,"name":"Donetsk","country":"UA","coord":{"lon":37.799999,"lat":48}},
+<item>Житомир‎ </item> {"_id":686967,"name":"Zhytomyr","country":"UA","coord":{"lon":28.676689,"lat":50.26487}}
+<item>Запоріжжя‎</item> {"_id":687700,"name":"Zaporizhzhya","country":"UA","coord":{"lon":35.183331,"lat":47.816669}}
+<item>Івано-Франківськ</item> {"_id":707471,"name":"Ivano-Frankivsk","country":"UA","coord":{"lon":24.709721,"lat":48.921501}},
+<item>Київ‎</item> {"_id":703448,"name":"Kiev","country":"UA","coord":{"lon":30.516666,"lat":50.433334}},
+<item>Кіровоград‎ </item> {"_id":705812,"name":"Kirovohrad","country":"UA","coord":{"lon":32.259701,"lat":48.513199}}
+<item>Луганськ‎</item> {"_id":702658,"name":"Luhansk","country":"UA","coord":{"lon":39.317059,"lat":48.567051}}
+<item>Луцьк‎</item>{"_id":702569,"name":"Lutsk","country":"UA","coord":{"lon":25.34244,"lat":50.759319}}
+<item>Львів‎</item> {"_id":702550,"name":"Lviv","country":"UA","coord":{"lon":24.023239,"lat":49.838261}}
+<item>Миколаїв‎</item> {"_id":700569,"name":"Mykolayiv","country":"UA","coord":{"lon":31.9974,"lat":46.965912}}
+<item>Одеса</item> {"_id":698740,"name":"Odessa","country":"UA","coord":{"lon":30.732622,"lat":46.477474}}
+<item>Полтава</item>{"_id":696643,"name":"Poltava","country":"UA","coord":{"lon":34.54073,"lat":49.593731}}
+<item>Рівне</item>{"_id":695594,"name":"Rivne","country":"UA","coord":{"lon":26.22743,"lat":50.623081}}
+<item>Суми‎</item> {"_id":692194,"name":"Sumy","country":"UA","coord":{"lon":34.800289,"lat":50.9216}}
+<item>Тернопіль</item>{"_id":691650,"name":"Ternopil","country":"UA","coord":{"lon":25.60556,"lat":49.555889}}
+<item>Ужгород‎ </item>{"_id":690548,"name":"Uzhhorod","country":"UA","coord":{"lon":22.299999,"lat":48.616669}}
+<item>Харків</item>{"_id":706483,"name":"Kharkiv","country":"UA","coord":{"lon":36.25,"lat":50}}
+<item>Херсон‎</item>{"_id":706448,"name":"Kherson","country":"UA","coord":{"lon":32.617802,"lat":46.655811}}
+<item>Хмельницький‎</item>{"_id":706369,"name":"Khmelnytskyy","country":"UA","coord":{"lon":26.996531,"lat":49.421612}}
+<item>Черкаси‎</item>{"_id":710791,"name":"Cherkasy","country":"UA","coord":{"lon":32.062069,"lat":49.428539}},
+<item>Чернівці‎</item> {"_id":710719,"name":"Chernivtsi","country":"UA","coord":{"lon":25.94034,"lat":48.291489}}
+<item>Чернігів</item>{"_id":710735,"name":"Chernihiv","country":"UA","coord":{"lon":31.28488,"lat":51.505508}}
+
+<item>Vinnytsya</item>
+<item>Dnipropetrovsk</item>
+<item>Donetsk‎</item>
+<item>Zhytomyr</item>
+<item>Zaporizhzhya‎</item>
+<item>Ivano-Frankivsk</item>
+<item>Kiev</item>
+<item>Kirovohrad</item>
+<item>Luhansk</item>
+<item>Lutsk‎</item>
+<item>Lviv‎</item> 
+<item>Mykolayiv</item> 
+<item>Odessa</item> 
+<item>Poltava</item>
+<item>Rivne</item>
+<item>Sumy</item> 
+<item>Ternopil</item>
+<item>Uzhhorod</item>
+<item>Kharkiv</item>
+<item>Kherson‎</item>
+<item>Khmelnytskyy‎</item>
+<item>Cherkasy‎</item>
+<item>Chernivtsi</item>
+<item>Chernihiv</item>
+
+<item>689558‎</item>
+<item>709930</item>
+<item>709717‎</item>
+<item>686967</item>
+<item>687700</item>
+<item>707471</item>
+<item>703448‎</item>
+<item>705812</item>
+<item>702658</item>
+<item>702569</item>
+<item>702550‎</item>
+<item>700569‎</item>
+<item>698740</item>
+<item>696643</item>
+<item>695594</item>
+<item>692194‎</item>
+<item>691650</item>
+<item>690548</item>
+<item>706483</item>
+<item>706448</item>
+<item>706369</item>
+<item>710791</item>
+<item>710719‎</item>
+<item>710735</item>

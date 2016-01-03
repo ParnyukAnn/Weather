@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
@@ -15,10 +17,10 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
+import com.aparnyuk.weather.adapter.WeatherAdapter;
 import com.aparnyuk.weather.service.UpdateService;
 
 import io.realm.Realm;
-
 
 public class MainFragment extends ListFragment {
     private static final String TAG = "myLogs";
@@ -34,6 +36,7 @@ public class MainFragment extends ListFragment {
     public final static String BROADCAST_ACTION = "com.aparnyuk.receiver.BROADCAST";
 
     BroadcastReceiver br;
+    SharedPreferences sp;
 
     public interface onItemClickListener {
         public void itemClick(int position, String weather);
@@ -59,10 +62,25 @@ public class MainFragment extends ListFragment {
         }
     }
 
+    public void onResume() {
+        Boolean notif = sp.getBoolean("notif", false);
+        String address = sp.getString("address", "");
+        String text = "Notifications are "
+                + ((notif) ? "enabled, address = " + address : "disabled");
+        String listValue = sp.getString("list", "не выбрано");
+        Toast.makeText(getContext(), listValue, Toast.LENGTH_LONG).show();
+        super.onResume();
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         listener = (onItemClickListener) activity;
+
+        // получаем SharedPreferences, которое работает с файлом настроек
+        sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        // полная очистка настроек
+        // sp.edit().clear().commit();
     }
 
     @Override
@@ -109,7 +127,6 @@ public class MainFragment extends ListFragment {
         String key = wthObj.getDt();
         listener.itemClick(position, key);
     }
-
 }
 
 

@@ -1,0 +1,51 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+       <PreferenceCategory
+           android:key="main"
+           android:summary="@string/pref_main_summary"
+           android:title="@string/pref_main_title">
+           <ListPreference
+               android:entries="@array/entries_lang"
+               android:entryValues="@array/entry_values_lang"
+               android:key="lang"
+               android:summary="@string/pref_language_summary"
+               android:title="@string/pref_language_title">
+           </ListPreference>
+           <PreferenceScreen
+               android:key="reset"
+               android:summary="@string/pref_reset_summary"
+               android:title="@string/pref_reset_title">
+           </PreferenceScreen>
+       </PreferenceCategory>
+
+       <PreferenceCategory
+           android:key="notif_category"
+           android:summary="@string/pref_notif_cat_summary"
+           android:title="@string/pref_notif_cat_title">
+               <SwitchPreference
+                     android:key="notif"
+                     android:summaryOff="@string/pref_notif_summary_off"
+                     android:summaryOn="@string/pref_notif_summary_on"
+                     android:title="@string/pref_notif_title"
+                     android:checked="true">
+
+                 </SwitchPreference>
+
+                 <ListPreference
+                   android:dependency="notif"
+                   android:entries="@array/entries_time"
+                   android:entryValues="@array/entry_time_values"
+                   android:key="frequency"
+                   android:summary="@string/pref_notif_freq_summary"
+                   android:title="@string/pref_notif_freq_title">
+               </ListPreference>
+
+               <ListPreference
+                     android:dependency="notif"
+                     android:entries="@array/entries"
+                     android:entryValues="@array/entry_values"
+                     android:key="sound"
+                     android:summary="@string/pref_notif_sound_type_summary"
+                     android:title="@string/pref_notif_sound_type_title">
+                 </ListPreference>
+       </PreferenceCategory>
+   </PreferenceScreen>

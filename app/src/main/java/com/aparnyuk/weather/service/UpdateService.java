@@ -1,15 +1,19 @@
 package com.aparnyuk.weather.service;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.aparnyuk.weather.MainFragment;
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
+import com.aparnyuk.weather.R;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -29,9 +33,15 @@ import io.realm.Realm;
 
 public class UpdateService extends IntentService {
     final String TAG = "myLogs";
-    public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=710791&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=ru&units=metric";
+   // public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=710791&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=uk&units=metric";
+    public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=";
+    public static final String API_CITY_CODE = "710791";
+    public static final String API_APPID = "&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=";
+    public static final String API_LANG = "ru";
+    public static final String API_UNITS = "&units=metric";
     private Realm realm;
-
+    SharedPreferences sp;
+    SharedPreferences msp;
     public UpdateService() {
         super("UpdateService");
     }
@@ -40,11 +50,13 @@ public class UpdateService extends IntentService {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "UpdateService - onCreate");
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        msp = getSharedPreferences("weatherSettings", Context.MODE_PRIVATE);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.d(TAG, "UpdateService - onHandleIntent");
+
 
         Intent localIntent = new Intent(MainFragment.BROADCAST_ACTION);
 
@@ -75,9 +87,13 @@ public class UpdateService extends IntentService {
         HttpURLConnection connection = null;
         BufferedReader bufferedReader = null;
         String jsonStr = null;
-        Log.d(TAG, "UpdateService - start connection");
+        String language = sp.getString("lang", API_LANG);
+        String  city = getResources().getStringArray(R.array.city_id)[msp.getInt("saved_city", 0)];
+        Log.d(TAG, "UpdateService - start connection, name ");
         try {
-            connection = (HttpURLConnection) new URL(API_URL).openConnection();
+            String url =   API_URL+city+API_APPID+language+API_UNITS;
+            //connection = (HttpURLConnection) new URL(API_URL).openConnection();
+            connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setRequestMethod("GET");
             connection.setDoInput(true);
             connection.setDoOutput(true);
@@ -94,12 +110,12 @@ public class UpdateService extends IntentService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "UpdateService - finish connection");
+        Log.d(TAG, "UpdateService - finish connection, city - " +msp.getInt("saved_city", 0)+" "+city);
         return jsonStr;
     }
 
     private List<WeatherInformation> JsonToWeatherInformationList(String jsonStr) {
-        Log.d(TAG, "UpdateService - from json to list");
+        //Log.d(TAG, "UpdateService - from json to list");
         try {
             Gson gson = new Gson();
             JSONObject jObject = new JSONObject(jsonStr);
@@ -119,14 +135,14 @@ public class UpdateService extends IntentService {
             e.printStackTrace();
             Log.d(TAG, e.getMessage());
         }
-        Log.d(TAG, "NULL");
+        //Log.d(TAG, "NULL");
         return null;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "UpdateService - onDestroy");
+      //  Log.d(TAG, "UpdateService - onDestroy");
     }
 }
 

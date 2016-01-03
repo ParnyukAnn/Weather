@@ -1,0 +1,156 @@
+<resources>
+    <string name="app_name">Sun&amp;Rain</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="action_refresh">Updates</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings for items and details-->
+    <string name="describe_temperature_plus"> +</string>
+    <string name="describe_temperature_minus"> </string>
+    <string name="describe_temperature_celsius">C°</string>
+    <string name="describe_pressure_begin">Pressure:</string>
+    <string name="describe_pressure_end"> mmHg.</string>
+    <string name="describe_humidity_begin">Humidity:</string>
+    <string name="describe_humidity_end"> %</string>
+    <string name="describe_wind_speed_begin">Wind speed: </string>
+    <string name="describe_wind_speed_end"> m/s</string>
+    <string name="describe_wind_direction_northern">northern</string>
+    <string name="describe_wind_direction_northeastern">northeastern</string>
+    <string name="describe_wind_direction_eastern">eastern</string>
+    <string name="describe_wind_direction_southeastern">southeastern</string>
+    <string name="describe_wind_direction_southern">southern</string>
+    <string name="describe_wind_direction_southwest">southwest</string>
+    <string name="describe_wind_direction_west">west</string>
+    <string name="describe_wind_direction_northwestern">northwestern</string>
+    <string name="describe_wind_direction_begin">Wind </string>
+    <string name="describe_wind_direction_middle">: </string>
+    <string name="describe_wind_direction_end">°</string>
+    <string name="describe_point">.</string>
+    <string name="empty_field">Something</string>
+
+    <!--NOTIFICATION-->
+    <string name="notification_ticker"> New weather updates. </string>
+    <string name="notification_text"> Updates available. </string>
+    <string name="notification_long_text"> Click on this message to go into the application or just click on the button to update the weather information. </string>
+    <string name="notification_update_button"> Update </string>
+
+    <!-- Preferens -->
+    <string name="pref_main_title">Main</string>
+    <string name="pref_main_summary">Main settings</string>
+    <string name="pref_city_summary">Choose city</string>
+    <string name="pref_city_title">City</string>
+    <string name="pref_reset_summary">Clear all settings</string>
+    <string name="pref_reset_title">Reset</string>
+    <string name="pref_notif_cat_summary">Notification settings</string>
+    <string name="pref_notif_cat_title">Notification</string>
+    <string name="pref_notif_summary_on">Enable notification</string>
+    <string name="pref_notif_summary_off">Disable notification</string>
+    <string name="pref_notif_title">Notification</string>
+    <string name="pref_notif_freq_summary">How often to check for updates</string>
+    <string name="pref_notif_freq_title">Frequency</string>
+    <string name="pref_notif_sound_type_summary">Sound of notification</string>
+    <string name="pref_notif_sound_type_title">Sound</string>
+
+    <string-array name="entries">
+        <item>Ringtone</item>
+        <item>Silent</item>
+        <item>Vibrate</item>
+    </string-array>
+    <string-array name="entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="entries_time">
+        <item>1 min.</item>
+        <item>5 min.</item>
+        <item>30 min.</item>
+        <item>1 hour</item>
+        <item>3 hour</item>
+        <item>12 hour </item>
+        <item>once a day</item>
+    </string-array>
+    <string-array name="entry_time_values">
+        <item>60000</item>
+        <item>300000</item>
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>10800000</item>
+        <item>43200000</item>
+        <item>86400000</item>
+    </string-array>
+
+    <string name="pref_language_title">Language</string>
+    <string name="pref_language_summary">You need reastart applicationo after choosing language.</string>
+    <string name="pref_lang_dialog_title">Choose language:</string>
+    <string name="pref_language_restart">Restart</string>
+    <string-array name="entries_lang">
+        <item>English</item>
+        <item>Russian</item>
+        <item>Ukrainian</item>
+        <item>Default</item>
+    </string-array>
+    <string-array name="entry_values_lang">
+        <item>en</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>default</item>
+    </string-array>
+
+    <string-array name="test_city">
+        <item>Vinnytsya</item>
+        <item>Dnipropetrovsk</item>
+        <item>Donetsk‎</item>
+        <item>Zhytomyr</item>
+        <item>Zaporizhzhya‎</item>
+        <item>Ivano-Frankivsk</item>
+        <item>Kiev</item>
+        <item>Kirovohrad</item>
+        <item>Luhansk</item>
+        <item>Lutsk‎</item>
+        <item>Lviv‎</item>
+        <item>Mykolayiv</item>
+        <item>Odessa</item>
+        <item>Poltava</item>
+        <item>Rivne</item>
+        <item>Sumy</item>
+        <item>Ternopil</item>
+        <item>Uzhhorod</item>
+        <item>Kharkiv</item>
+        <item>Kherson‎</item>
+        <item>Khmelnytskyy‎</item>
+        <item>Cherkasy‎</item>
+        <item>Chernivtsi</item>
+        <item>Chernihiv</item>
+    </string-array>
+    <string-array name="city_id">
+    <item>689558‎</item>
+    <item>709930</item>
+    <item>709717‎</item>
+    <item>686967</item>
+    <item>687700</item>
+    <item>707471</item>
+    <item>703448‎</item>
+    <item>705812</item>
+    <item>702658</item>
+    <item>702569</item>
+    <item>702550‎</item>
+    <item>700569‎</item>
+    <item>698740</item>
+    <item>696643</item>
+    <item>695594</item>
+    <item>692194‎</item>
+    <item>691650</item>
+    <item>690548</item>
+    <item>706483</item>
+    <item>706448</item>
+    <item>706369</item>
+    <item>710791</item>
+    <item>710719‎</item>
+    <item>710735</item>
+    </string-array>
+    <string name="content_description_arrow_dropdown">Ult</string>
+
+</resources>

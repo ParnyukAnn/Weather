@@ -1,0 +1,41 @@
+<resources>
+    <style name="SimpleMediumText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+
+    </style>
+
+    <style name="SimpleMediumText.Dark">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="SimpleText" parent="@android:style/TextAppearance.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="SimpleText.Dark">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="LargeText" parent="@android:style/TextAppearance.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+
+    <style name="LargeText.Dark">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+
+
+
+
+
+</resources>

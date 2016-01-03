@@ -5,14 +5,24 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
+        android:enabled="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".MainActivity"
+            android:configChanges="locale"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,6 +33,7 @@
         </activity>
         <activity
             android:name=".DetailActivity"
+            android:configChanges="locale"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -43,6 +54,10 @@
             android:name=".service.NotifyService"
             android:enabled="true"
             android:exported="false" />
+
+        <activity
+            android:name=".PrefActivity"
+            android:configChanges="locale"></activity>
     </application>
 
 </manifest>

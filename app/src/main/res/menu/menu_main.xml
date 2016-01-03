@@ -13,16 +13,4 @@
         android:icon="@drawable/refresh"
         android:title="@string/action_refresh"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_item1"
-        android:title="Something"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_item2"
-        android:title="Something"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_item3"
-        android:title="Something"
-        app:showAsAction="never" />
 </menu>

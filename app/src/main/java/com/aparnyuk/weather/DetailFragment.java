@@ -1,5 +1,11 @@
 package com.aparnyuk.weather;
 
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -54,7 +60,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void showDetailInfo(View v) {
-        PrintInfo w = new PrintInfo(wi);
+        PrintInfo w = new PrintInfo(getContext(), wi);
         Log.d(TAG, "Detail fragment showDetailInfo");
 
         ((CardView) v.findViewById(R.id.card_view)).setVisibility(View.VISIBLE);
@@ -68,15 +74,18 @@ public class DetailFragment extends Fragment {
         ((TextView) v.findViewById(R.id.tvWind)).setText(w.printWindDirection());
         ((TextView) v.findViewById(R.id.tvHumidity)).setText(w.printHumidity());
 
+
         Picasso.with(getContext())
                 .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
                         //.placeholder(R.drawable.dunno)
                         //.error(R.drawable.dunno)
                 .into((ImageView) v.findViewById(R.id.ivImageDetail));
 
-        Picasso.with(getContext())
+     //  ((ImageView) v.findViewById(R.id.picWind)).setImageDrawable(w.showWindDirection(getActivity()));
+      Picasso.with(getContext())
                 .load(w.showWindDirection())
                 .into((ImageView) v.findViewById(R.id.picWind));
+
         Picasso.with(getContext())
                 .load(R.drawable.ic_weather_windy_grey600_24dp)
                 .into((ImageView) v.findViewById(R.id.picWindSpeed));

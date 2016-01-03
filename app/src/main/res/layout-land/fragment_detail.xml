@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:clickable="true"
+    android:elevation="16dp"
+    card_view:cardCornerRadius="6dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvDayDetail"
+                    style="@style/LargeText" />
+                <TextView
+                    android:id="@+id/tvDataDetail"
+                    style="@style/SimpleText" />
+                <TextView
+                    android:id="@+id/tvTimeDetail"
+                    style="@style/LargeText" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTemperatureDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-light"
+                android:padding="@dimen/card_dim"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/ivImageDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="8dp">
+                    <ImageView
+                        android:id="@+id/picWeath"
+                        style="@style/SimpleImage" />
+                    <TextView
+                        android:id="@+id/tvWeatherDetail"
+                        style="@style/SimpleMediumText"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryText" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+                    <ImageView
+                        android:id="@+id/picWind"
+                        style="@style/SimpleImage" />
+                    <TextView
+                        android:id="@+id/tvWind"
+                        style="@style/SimpleMediumText" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+                    <ImageView
+                        android:id="@+id/picWindSpeed"
+                        style="@style/SimpleImage"
+                        android:src="@drawable/weather_windy" />
+                    <TextView
+                        android:id="@+id/tvWindSpeed"
+                        style="@style/SimpleMediumText" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+                    <ImageView
+                        android:id="@+id/picPressure"
+                        style="@style/SimpleImage"
+                        android:src="@drawable/thermometer_lines" />
+                    <TextView
+                        android:id="@+id/tvPressure"
+                        style="@style/SimpleMediumText" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal">
+                    <ImageView
+                        android:id="@+id/picHumidity"
+                        style="@style/SimpleImage"
+                        android:src="@drawable/water_percent" />
+                    <TextView
+                        android:id="@+id/tvHumidity"
+                        style="@style/SimpleMediumText" />
+                </TableRow>
+
+            </TableLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
