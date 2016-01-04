@@ -47,20 +47,22 @@
     <string name="pref_notif_summary_on">Enable notification</string>
     <string name="pref_notif_summary_off">Disable notification</string>
     <string name="pref_notif_title">Notification</string>
-    <string name="pref_notif_freq_summary">How often to check for updates</string>
+    <string name="pref_notif_freq_summary">How often show notification</string>
     <string name="pref_notif_freq_title">Frequency</string>
     <string name="pref_notif_sound_type_summary">Sound of notification</string>
     <string name="pref_notif_sound_type_title">Sound</string>
 
     <string-array name="entries">
-        <item>Ringtone</item>
         <item>Silent</item>
+        <item>Ringtone</item>
         <item>Vibrate</item>
+        <item>Combine</item>
     </string-array>
     <string-array name="entry_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
     <string-array name="entries_time">
@@ -86,11 +88,25 @@
     <string name="pref_language_summary">You need reastart applicationo after choosing language.</string>
     <string name="pref_lang_dialog_title">Choose language:</string>
     <string name="pref_language_restart">Restart</string>
+
+
+    <!--Dialog-->
+    <string name="exit_dialog_title">Exit</string>
+    <string name="exit_dialog_message">You need to restart your application to apply the changes</string>
+    <string name="exit_dialog_yes">Restart</string>
+    <string name="exit_dialog_cancel">Cancel</string>
+
+    <string name="network_dialog_title">No internet connection</string>
+    <string name="network_dialog_message">To chance language settings you need internet connection</string>
+    <string name="network_dialog_message_for_refresh">You need internet connection for correct reset language preferences</string>
+    <string name="network_dialog_cancel">Cancel</string>
+
+
     <string-array name="entries_lang">
         <item>English</item>
         <item>Russian</item>
         <item>Ukrainian</item>
-        <item>Default</item>
+        <item>Default language</item>
     </string-array>
     <string-array name="entry_values_lang">
         <item>en</item>

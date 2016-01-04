@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -38,8 +39,10 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG = "myLogs";
     private List<String> cit = new ArrayList<String>();
     SharedPreferences sp;
+    SharedPreferences prefs = null;
     final String SAVED_CITY = "saved_city";
-    public static final String APP_PREFERENCES ="weatherSettings";
+    public static final String APP_PREFERENCES = "weatherSettings";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "onCreate in MainActivity, notify don't work - " + NotifyService.state);
         //startService(new Intent(this, NotificationService.class));
 
-
+        prefs = getSharedPreferences("com.aparnyuk.weather", MODE_PRIVATE);
 //!! Add spinner into Toolbar
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
@@ -103,12 +106,12 @@ public class MainActivity extends AppCompatActivity
             }
         });
         //!!
-
+/*
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         if ((NotifyService.state) && (sp.getBoolean("notif", false) == true)) {
             startService(new Intent(this, NotifyService.class));
         }
-
+*/
         if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
             key = savedInstanceState.getString("key");
@@ -118,6 +121,9 @@ public class MainActivity extends AppCompatActivity
             showDetails(position, key);
         }
     }
+
+
+
 
     void showDetails(int pos, String k) {
         Log.d(TAG, "showDetails in MainActivity");
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity
 
     public void saveCity(int num) {
         SharedPreferences sp = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-       // sp = getPreferences(MODE_PRIVATE);
+        // sp = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor ed = sp.edit();
         ed.putInt(SAVED_CITY, num);
         ed.apply();
@@ -196,7 +202,40 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences sp = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         //sp = getPreferences(MODE_PRIVATE);
         int savedNum = sp.getInt(SAVED_CITY, 0);
-        Toast.makeText(this, "Load city, city code: "+ savedNum, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Load city, city code: " + savedNum, Toast.LENGTH_SHORT).show();
         return savedNum;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            // При первом запуске (или если юзер удалял все данные приложения)
+            // мы попадаем сюда.
+            //пытаемся получить значение
+            Boolean notif = prefs.getBoolean("notif", false);
+            Log.d(TAG, "in MainActivity, onResume - notification state: " + notif);
+            if (!notif) {
+                notif = true;
+                SharedPreferences.Editor editor = prefs.edit();
+                //устанавливаем дефолтное значение
+                editor.putBoolean("notif", true);
+                editor.commit();
+                Log.d(TAG, "in MainActivity, onResume - notification state before start service: " + notif);
+                startService(new Intent(this, NotifyService.class));
+            }
+            Toast.makeText(this, "First run", Toast.LENGTH_SHORT).show();
+            prefs.edit().putBoolean("firstrun", false).commit();
+
+            String lang = prefs.getString("lang","default");
+            if (!lang.equals("ru")) {
+                SharedPreferences.Editor editor = prefs.edit();
+                //устанавливаем дефолтное значение
+                editor.putString("lang", "ru");
+                editor.commit();
+                Log.d(TAG, "in MainActivity, onResume - notification state before start service: " + notif);
+            }
+        }
     }
 }

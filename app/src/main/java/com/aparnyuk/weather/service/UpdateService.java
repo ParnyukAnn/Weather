@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.aparnyuk.weather.MainFragment;
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
@@ -57,9 +56,7 @@ public class UpdateService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-
         Intent localIntent = new Intent(MainFragment.BROADCAST_ACTION);
-
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(this.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
@@ -76,10 +73,8 @@ public class UpdateService extends IntentService {
         } else {
             localIntent.putExtra(MainFragment.PARAM_STATUS, MainFragment.STATUS_FAILED);
         }
-
         localIntent.putExtra(MainFragment.PARAM_RESULT, 10);
         sendBroadcast(localIntent);
-
         //LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
     }
 

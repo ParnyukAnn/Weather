@@ -48,7 +48,7 @@
     <string name="pref_notif_summary_on">Включить уведомления</string>
     <string name="pref_notif_summary_off">Виключить уведомления</string>
     <string name="pref_notif_title">Уведомления</string>
-    <string name="pref_notif_freq_summary">Как часто обновлять данные</string>
+    <string name="pref_notif_freq_summary">Как часто показывать уведомления</string>
     <string name="pref_notif_freq_title">Частота</string>
     <string name="pref_notif_sound_type_summary">Звук уведомлений</string>
     <string name="pref_notif_sound_type_title">Звук</string>
@@ -62,35 +62,38 @@
         <item>Английский</item>
         <item>Русский</item>
         <item>Украинский</item>
-        <item>Язык аппарата</item>
+        <item>Язык оригинала</item>
     </string-array>
     <string-array name="entry_values_lang">
         <item>en</item>
         <item>ru</item>
         <item>uk</item>
-        <item>ru</item>
+        <item>default</item>
     </string-array>
 
     <!--Dialog-->
     <string name="exit_dialog_title">Выход</string>
     <string name="exit_dialog_message">Чтобы изменения вступили в силу необходимо перезапустить приложение</string>
     <string name="exit_dialog_yes">Перезапуск</string>
-    <string name="exit_dialog_cancel">Сохранено</string>
+    <string name="exit_dialog_cancel">Отмена</string>
 
     <string name="network_dialog_title">Нет содинения</string>
-    <string name="network_dialog_message">Для смены языковых настроек необходимо соединение с интренетом</string>
+    <string name="network_dialog_message">Для смены языковых настроек необходимо соединение с Интернетом</string>
+    <string name="network_dialog_message_for_refresh">Для корректного сброса языковых настроек необходимо соединение с Интернетом</string>
     <string name="network_dialog_cancel">Выход</string>
 
 
     <string-array name="entries">
-        <item>Рингтон</item>
         <item>Тихо</item>
+        <item>Рингтон</item>
         <item>Вибрация</item>
+        <item>Комбинированный</item>
     </string-array>
     <string-array name="entry_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
 
@@ -120,23 +123,24 @@
         <item>Житомир</item> <!-- 3 -->
         <item>Запорожье</item> <!-- 4 -->
         <item>Ивано-Франковск</item> <!-- 5 -->
-        <item>Кировоград</item><!-- 6 -->
-        <item>Луганск</item><!-- 7 -->
-        <item>Луцк</item><!-- 8 -->
-        <item>Львов</item><!-- 9 -->
-        <item>Николаев</item><!-- 10  -->
-        <item>Одесса</item><!-- 11 -->
-        <item>Полтава</item><!-- 12 -->
-        <item>Ровно</item><!-- 13 -->
-        <item>Сумы</item><!-- 14 -->
-        <item>Тернополь</item><!-- 15 -->
-        <item>Ужгород</item><!-- 16 -->
-        <item>Харьков</item><!-- 17 -->
-        <item>Херсон</item><!-- 18 -->
-        <item>Хмельницкий </item><!-- 19 -->
-        <item>Черкассы</item><!-- 20 -->
-        <item>Чернигов</item><!-- 21 -->
-        <item>Черновцы</item><!-- 22 -->
+        <item>Kiev</item><!-- 6 -->
+        <item>Кировоград</item> <!-- 7 -->
+        <item>Луганск</item><!-- 8 -->
+        <item>Луцк</item><!-- 9 -->
+        <item>Львов</item><!-- 10 -->
+        <item>Николаев</item><!-- 11  -->
+        <item>Одесса</item><!-- 12 -->
+        <item>Полтава</item><!-- 13 -->
+        <item>Ровно</item><!-- 14 -->
+        <item>Сумы</item><!-- 15 -->
+        <item>Тернополь</item><!-- 16 -->
+        <item>Ужгород</item><!-- 17 -->
+        <item>Харьков</item><!-- 18 -->
+        <item>Херсон</item><!-- 19 -->
+        <item>Хмельницкий </item><!-- 20 -->
+        <item>Черкассы</item><!-- 21 -->
+        <item>Чернигов</item><!-- 22 -->
+        <item>Черновцы</item><!-- 23 -->
     </string-array>
     <string-array name="city_id">
         <item>689558‎</item>

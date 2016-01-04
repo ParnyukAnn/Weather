@@ -28,7 +28,7 @@ public class NotifyService extends Service {
     private final int NOTIFICATION_ID = 73;
     public static boolean state = true;
     Timer mTimer;
-  //  SharedPreferences sp;
+    SharedPreferences sp;
 
     public NotifyService() {
     }
@@ -44,11 +44,10 @@ public class NotifyService extends Service {
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "NotifyService - onStartCommand");
-       // sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mTimer = new Timer();
         MyTimerTask mMyTimerTask = new MyTimerTask();
-        //mTimer.schedule(mMyTimerTask, 1000, sp.getLong("freq", 60000));
-        mTimer.schedule(mMyTimerTask, 1000, 60000);
+        mTimer.schedule(mMyTimerTask, 1000, Long.parseLong(sp.getString("frequency", "60000")));
         return Service.START_STICKY;
     }
 
@@ -73,32 +72,24 @@ public class NotifyService extends Service {
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(getString(R.string.notification_long_text)))
                     .addAction(R.drawable.ic_refresh_white_24dp, getString(R.string.notification_update_button), downloadPendingIntent);
 
-
-            //notification.defaults = Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
-
             Notification notification = builder.build();
-/*
-            switch (sp.getInt("sound_type", 2)) {
+
+            switch (Integer.parseInt(sp.getString("sound", "1"))) {
                 case 1:
-                    notification.defaults = Notification.DEFAULT_SOUND;
                     break;
                 case 2:
+                    notification.defaults = Notification.DEFAULT_SOUND;
                     break;
                 case 3:
                     notification.defaults = Notification.DEFAULT_VIBRATE;
                     break;
-
+                case 4:
+                    notification.defaults = Notification.DEFAULT_SOUND & Notification.DEFAULT_VIBRATE;
+                    break;
             }
 
-*/
             nm.notify(NOTIFICATION_ID, notification);
             Log.d(TAG, "Notification in TimerTask");
-/*          runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                }
-            });
-            */
         }
     }
 

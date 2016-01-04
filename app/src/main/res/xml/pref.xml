@@ -26,10 +26,8 @@
                      android:summaryOff="@string/pref_notif_summary_off"
                      android:summaryOn="@string/pref_notif_summary_on"
                      android:title="@string/pref_notif_title"
-                     android:checked="true">
-
+                     android:defaultValue="true">
                  </SwitchPreference>
-
                  <ListPreference
                    android:dependency="notif"
                    android:entries="@array/entries_time"
@@ -38,7 +36,6 @@
                    android:summary="@string/pref_notif_freq_summary"
                    android:title="@string/pref_notif_freq_title">
                </ListPreference>
-
                <ListPreference
                      android:dependency="notif"
                      android:entries="@array/entries"
