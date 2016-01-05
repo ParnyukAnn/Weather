@@ -1,4 +1,4 @@
-package com.aparnyuk.weather;
+package com.aparnyuk.weather.other;
 
 import android.app.Application;
 import android.content.Intent;
@@ -27,18 +27,15 @@ public class MyApplication extends Application {
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, null);
-        Log.d("myLogs", "onCreate application - end");
-    }
+     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        Log.d("myLogs", "onConfigurationChanged application - start");
         super.onConfigurationChanged(newConfig);
         locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, null);
-        Log.d("myLogs", "onConfigurationChanged application - end");
     }
 }

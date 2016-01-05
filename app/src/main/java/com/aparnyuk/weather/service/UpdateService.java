@@ -7,10 +7,9 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.aparnyuk.weather.MainFragment;
+import com.aparnyuk.weather.fragment.MainFragment;
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
 import com.aparnyuk.weather.R;
 import com.google.gson.Gson;
@@ -29,10 +28,9 @@ import java.util.List;
 
 import io.realm.Realm;
 
-
 public class UpdateService extends IntentService {
     final String TAG = "myLogs";
-   // public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=710791&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=uk&units=metric";
+    // public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=710791&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=uk&units=metric";
     public static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=";
     public static final String API_CITY_CODE = "710791";
     public static final String API_APPID = "&APPID=753b467a7c96ec73dbc7c46ce1b781ba&lang=";
@@ -50,18 +48,16 @@ public class UpdateService extends IntentService {
         super.onCreate();
         Log.d(TAG, "UpdateService - onCreate");
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-        msp = getSharedPreferences("weatherSettings", Context.MODE_PRIVATE);
+        msp = getSharedPreferences("com.aparnyuk.weather", Context.MODE_PRIVATE);
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
         Intent localIntent = new Intent(MainFragment.BROADCAST_ACTION);
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(this.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         if (netInfo != null && netInfo.isConnectedOrConnecting()) {
             realm = Realm.getInstance(this);
-            // Toast.makeText(this, "Сервис обновил данные", Toast.LENGTH_LONG).show();
             // Удаление старой базы
             realm.beginTransaction();
             realm.allObjects(WeatherInformation.class).clear();
@@ -75,7 +71,6 @@ public class UpdateService extends IntentService {
         }
         localIntent.putExtra(MainFragment.PARAM_RESULT, 10);
         sendBroadcast(localIntent);
-        //LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
     }
 
     protected String downloadJSON() {
@@ -84,7 +79,6 @@ public class UpdateService extends IntentService {
         String jsonStr = null;
         String language = sp.getString("lang", API_LANG);
         String  city = getResources().getStringArray(R.array.city_id)[msp.getInt("saved_city", 0)];
-        Log.d(TAG, "UpdateService - start connection, name ");
         try {
             String url =   API_URL+city+API_APPID+language+API_UNITS;
             //connection = (HttpURLConnection) new URL(API_URL).openConnection();
@@ -110,7 +104,6 @@ public class UpdateService extends IntentService {
     }
 
     private List<WeatherInformation> JsonToWeatherInformationList(String jsonStr) {
-        //Log.d(TAG, "UpdateService - from json to list");
         try {
             Gson gson = new Gson();
             JSONObject jObject = new JSONObject(jsonStr);
@@ -124,20 +117,17 @@ public class UpdateService extends IntentService {
             }
             return realm.allObjects(WeatherInformation.class);
         } catch (JSONException e) {
-            Log.d(TAG, e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-            Log.d(TAG, e.getMessage());
         }
-        //Log.d(TAG, "NULL");
         return null;
     }
 
     @Override
     public void onDestroy() {
+        Log.d(TAG,"updateService on Destroy");
         super.onDestroy();
-      //  Log.d(TAG, "UpdateService - onDestroy");
     }
 }
 

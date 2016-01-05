@@ -1,4 +1,4 @@
-package com.aparnyuk.weather;
+package com.aparnyuk.weather.other;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.preference.PreferenceManager;
 
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
+import com.aparnyuk.weather.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,7 +41,6 @@ public class PrintInfo {
 
     public String printPressure() {
         return c.getString(R.string.describe_pressure_begin)+" " + Math.round(w.getMain().getPressure() * 0.7500637) +" " + c.getString(R.string.describe_pressure_end);
-
     }
 
     public String printHumidity() {
@@ -87,7 +87,6 @@ public class PrintInfo {
         direct = c.getString(R.string.describe_wind_direction_begin)+" "+ direct + c.getString(R.string.describe_wind_direction_middle) +" "+ d + c.getString(R.string.describe_wind_direction_end);
         return direct;
     }
-
 
     public int showWindDirection() {
         int d = Math.round(w.getWind().getDeg());
@@ -159,8 +158,6 @@ public class PrintInfo {
     }
 
     public String printDate() {
-       // Locale locale = new Locale("ru", "RU");
-        //Locale locale = new Locale("en", "EN");
         Locale locale = new Locale(sp.getString("lang", "ru"), sp.getString("lang", "ru").toUpperCase());
         SimpleDateFormat f = new SimpleDateFormat("dd MMMM", locale);
         return f.format(thisDate());
@@ -172,8 +169,6 @@ public class PrintInfo {
     }
 
     public String printDay(boolean shortForm) {
-        //Locale locale = new Locale("ru", "RU");
-        //Locale locale = new Locale("en", "EN");
         Locale locale = new Locale(sp.getString("lang", "ru"), sp.getString("lang", "ru").toUpperCase());
         Calendar cal = new GregorianCalendar();
         cal.setTime(thisDate());

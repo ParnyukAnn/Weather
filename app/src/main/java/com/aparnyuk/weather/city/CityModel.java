@@ -1,8 +1,5 @@
 package com.aparnyuk.weather.city;
 
-/**
- * Created by Anna on 27.12.2015.
- */
 public class CityModel {
     private int _id;
     private String name;

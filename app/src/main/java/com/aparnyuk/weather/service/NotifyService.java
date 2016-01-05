@@ -1,6 +1,5 @@
 package com.aparnyuk.weather.service;
 
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,12 +14,11 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.aparnyuk.weather.MainActivity;
+import com.aparnyuk.weather.activity.MainActivity;
 import com.aparnyuk.weather.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class NotifyService extends Service {
 
@@ -29,11 +27,10 @@ public class NotifyService extends Service {
     public static boolean state = true;
     Timer mTimer;
     SharedPreferences sp;
+    final String TAG = "myLogs";
 
     public NotifyService() {
     }
-
-    final String TAG = "myLogs";
 
     public void onCreate() {
         super.onCreate();
@@ -43,7 +40,7 @@ public class NotifyService extends Service {
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "NotifyService - onStartCommand");
+        //  Log.d(TAG, "NotifyService - onStartCommand");
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mTimer = new Timer();
         MyTimerTask mMyTimerTask = new MyTimerTask();
@@ -52,7 +49,6 @@ public class NotifyService extends Service {
     }
 
     class MyTimerTask extends TimerTask {
-
         @Override
         public void run() {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext());
@@ -87,14 +83,11 @@ public class NotifyService extends Service {
                     notification.defaults = Notification.DEFAULT_SOUND & Notification.DEFAULT_VIBRATE;
                     break;
             }
-
             nm.notify(NOTIFICATION_ID, notification);
-            Log.d(TAG, "Notification in TimerTask");
         }
     }
 
     public void onDestroy() {
-        Log.d(TAG, "NotifyService - onDestroy");
         nm.cancel(NOTIFICATION_ID);
         mTimer.cancel();
         super.onDestroy();
@@ -103,7 +96,6 @@ public class NotifyService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "NotifyService - onBind");
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

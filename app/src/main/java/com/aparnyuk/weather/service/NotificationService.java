@@ -9,20 +9,16 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import com.aparnyuk.weather.MainActivity;
+import com.aparnyuk.weather.activity.MainActivity;
 import com.aparnyuk.weather.R;
 
 import java.util.concurrent.TimeUnit;
 
-
 public class NotificationService extends IntentService {
 
     final String TAG = "myLogs";
-
     private NotificationManager nm;
     private final int NOTIFICATION_ID = 73;
-
-
 
     public NotificationService() {
         super("UpdateService");
@@ -33,12 +29,10 @@ public class NotificationService extends IntentService {
         super.onCreate();
         nm = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Log.d(TAG, "NotificationService - onCreate");
-
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-//!!
         int i = 0;
         while (i < 10) {
             //while (true) {

@@ -1,4 +1,4 @@
-package com.aparnyuk.weather;
+package com.aparnyuk.weather.activity;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
@@ -9,16 +9,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
 import android.util.Log;
-import android.widget.Switch;
 
+import com.aparnyuk.weather.R;
 import com.aparnyuk.weather.service.NotifyService;
 import com.aparnyuk.weather.service.UpdateService;
 
@@ -37,10 +35,12 @@ public class PrefActivity extends PreferenceActivity {
 
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref);
+        Log.d(TAG, "in Preference on create");
 
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        intent = PendingIntent.getActivity(getApplicationContext(), 0,
+                new Intent(getIntent()), 0);
 
-        Log.d(TAG, "in Pref on create - before lang");
         // Cмена языка приложения
         Preference lang = (Preference) findPreference("lang");
         lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -52,27 +52,19 @@ public class PrefActivity extends PreferenceActivity {
                 } else {
                     showDialog(DIALOG_NO_INT);
                 }
-
                 return true;
             }
         });
 
-        Log.d(TAG, "in Pref on create- before reset");
-
+        // Сброс настроек
         Preference reset = (Preference) findPreference("reset");
         reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                Log.d(TAG, "reset - before check int");
                 if (isNetworkAvailable(getBaseContext())) {
-                    Log.d(TAG, "reset - is int");
                     sp.edit().clear().commit();
-                    //startActivity(new Intent(getApplicationContext(), PrefActivity.class));
-                    // SwitchPreference notif = (SwitchPreference) findPreference("notif");
-                    // notif.setChecked(true);
                     restartApp();
                 } else {
-                    Log.d(TAG, "reset - no int");
                     showDialog(DIALOG_REFRESH);
                 }
                 return true;
@@ -81,7 +73,6 @@ public class PrefActivity extends PreferenceActivity {
 
         // Включение-отключение уведомлений
         Preference notif = (Preference) findPreference("notif");
-        //notif.setEnabled(true);
         notif.getOnPreferenceChangeListener();
         notif.setOnPreferenceChangeListener(
                 new Preference.OnPreferenceChangeListener() {
@@ -98,6 +89,7 @@ public class PrefActivity extends PreferenceActivity {
                 }
         );
 
+        // Установка частоты обновлений
         Preference notif_freq = (Preference) findPreference("frequency");
         notif_freq.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
@@ -112,34 +104,31 @@ public class PrefActivity extends PreferenceActivity {
     }
 
     protected Dialog onCreateDialog(int id) {
-        Log.d(TAG, "in dialog - before check int");
-            if (id == DIALOG_EXIT) {
-                Log.d(TAG, "for lang - is int");
-                AlertDialog.Builder adb = new AlertDialog.Builder(this);
-                adb.setTitle(R.string.exit_dialog_title);
-                adb.setMessage(R.string.exit_dialog_message);
-                adb.setIcon(android.R.drawable.ic_dialog_info);
-                adb.setPositiveButton(R.string.exit_dialog_yes, myClickListener);
-                adb.setNeutralButton(R.string.exit_dialog_cancel, myClickListener);
-                return adb.create();
-            }
-            if (id == DIALOG_NO_INT) {
-                Log.d(TAG, "for lang - no int");
-                AlertDialog.Builder adb = new AlertDialog.Builder(this);
-                adb.setTitle(R.string.network_dialog_title);
-                adb.setMessage(R.string.network_dialog_message);
-                adb.setIcon(android.R.drawable.ic_dialog_info);
-                adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
-                return adb.create();
-            }
-            if (id == DIALOG_REFRESH) {
-                AlertDialog.Builder adb = new AlertDialog.Builder(this);
-                adb.setTitle(R.string.network_dialog_title);
-                adb.setMessage(R.string.network_dialog_message_for_refresh);
-                adb.setIcon(android.R.drawable.ic_dialog_info);
-                adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
-                return adb.create();
-            }
+        if (id == DIALOG_EXIT) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle(R.string.exit_dialog_title);
+            adb.setMessage(R.string.exit_dialog_message);
+            adb.setIcon(android.R.drawable.ic_dialog_info);
+            adb.setPositiveButton(R.string.exit_dialog_yes, myClickListener);
+            adb.setNeutralButton(R.string.exit_dialog_cancel, myClickListener);
+            return adb.create();
+        }
+        if (id == DIALOG_NO_INT) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle(R.string.network_dialog_title);
+            adb.setMessage(R.string.network_dialog_message);
+            adb.setIcon(android.R.drawable.ic_dialog_info);
+            adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
+            return adb.create();
+        }
+        if (id == DIALOG_REFRESH) {
+            AlertDialog.Builder adb = new AlertDialog.Builder(this);
+            adb.setTitle(R.string.network_dialog_title);
+            adb.setMessage(R.string.network_dialog_message_for_refresh);
+            adb.setIcon(android.R.drawable.ic_dialog_info);
+            adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
+            return adb.create();
+        }
         return super.onCreateDialog(id);
     }
 
@@ -153,7 +142,6 @@ public class PrefActivity extends PreferenceActivity {
                 case Dialog.BUTTON_NEGATIVE:
                     finish();
                     break;
-                //case Dialog.BUTTON_:
             }
         }
     };

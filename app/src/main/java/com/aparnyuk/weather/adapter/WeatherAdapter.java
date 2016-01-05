@@ -10,12 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aparnyuk.weather.ModelJR.Weather;
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
-import com.aparnyuk.weather.PrintInfo;
+import com.aparnyuk.weather.other.PrintInfo;
 import com.aparnyuk.weather.R;
 import com.squareup.picasso.Picasso;
-
 
 public class WeatherAdapter extends BaseAdapter {
     Context ctx;
@@ -28,12 +26,10 @@ public class WeatherAdapter extends BaseAdapter {
         this.lInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return objects.size();
     }
-
 
     @Override
     public Object getItem(int position) {
@@ -56,9 +52,7 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         ViewHolder holder;
-
         View v = convertView;
         if (v == null) {
             v = lInflater.inflate(R.layout.item, parent, false);
@@ -86,9 +80,9 @@ public class WeatherAdapter extends BaseAdapter {
         Picasso.with(ctx)
                 //.load("http://openweathermap.org/img/w/" + w.getIcon() + ".png")
                 .load(picResource(wi.getWeather().get(0).getId(), w.isNight()))
-                //.placeholder(R.drawable.dunno)
-                //.error(R.drawable.dunno)
-                //.into((ImageView) v.findViewById(R.id.ivImage));
+                        //.placeholder(R.drawable.dunno)
+                        //.error(R.drawable.dunno)
+                        //.into((ImageView) v.findViewById(R.id.ivImage));
                 .into(holder.ivImage);
         return v;
     }
@@ -120,7 +114,6 @@ public class WeatherAdapter extends BaseAdapter {
         } else {
             res = R.drawable.dunno;
         }
-
         if ((isNight) && (code == 800))
             res = R.drawable.ic_weather_night_grey600_36dp;
         return res;

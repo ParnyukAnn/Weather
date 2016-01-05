@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.aparnyuk.weather.MainActivity">
+    tools:context=".activity.MainActivity">
 
     <include layout="@layout/toolbar" />
 
