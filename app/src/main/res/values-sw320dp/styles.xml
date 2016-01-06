@@ -4,7 +4,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/colorSecondaryText</item>
-
     </style>
 
     <style name="SimpleMediumText.Dark">
@@ -32,10 +31,4 @@
     <style name="LargeText.Dark">
         <item name="android:textColor">@color/colorPrimaryText</item>
     </style>
-
-
-
-
-
-
 </resources>

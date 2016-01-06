@@ -137,7 +137,6 @@
                     android:id="@+id/picPressure"
                     style="@style/SimpleImage"
                     android:src="@drawable/thermometer_lines" />
-                <!-- android:src="@drawable/ic_thermometer_lines_grey600_24dp"/>-->
 
                 <TextView
                     android:id="@+id/tvPressure"

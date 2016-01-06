@@ -17,6 +17,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.aparnyuk.weather.ModelJR.WeatherInformation;
+
+import com.aparnyuk.weather.R;
 import com.aparnyuk.weather.adapter.WeatherAdapter;
 import com.aparnyuk.weather.service.UpdateService;
 
@@ -36,7 +38,7 @@ public class MainFragment extends ListFragment {
     SharedPreferences sp;
 
     public interface onItemClickListener {
-        public void itemClick(int position, String weather);
+        void itemClick(int position, String weather);
     }
 
     onItemClickListener listener;
@@ -76,10 +78,10 @@ public class MainFragment extends ListFragment {
                 int status = intent.getIntExtra(PARAM_STATUS, 0);
                 // int result = intent.getIntExtra(PARAM_RESULT, -1);
                 if (status == STATUS_FINISH) {
-                    Toast.makeText(getContext(), "Сервис обновил данные.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.service_update_data, Toast.LENGTH_LONG).show();
                 }
                 if (status == STATUS_FAILED) {
-                    Toast.makeText(getContext(), "Нет соединения с Интернетом.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.no_internet_connect, Toast.LENGTH_LONG).show();
                 }
                 downloadFromDB();
             }
@@ -92,9 +94,9 @@ public class MainFragment extends ListFragment {
         if (realm.allObjects(WeatherInformation.class).size() != 0) {
             weatherAdapter = new WeatherAdapter(getContext(), realm.allObjects(WeatherInformation.class));
             setListAdapter(weatherAdapter);
-            Toast.makeText(getActivity(), "Загрузка данных из БД", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.db_download_data, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(getActivity(), "Нет данных в БД", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.db_no_data, Toast.LENGTH_LONG).show();
         }
     }
 

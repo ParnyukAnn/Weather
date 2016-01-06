@@ -1,4 +1,5 @@
 <resources>
+    <!--Titles, main button-->
     <string name="app_name">Sun&amp;Rain</string>
     <string name="app_label">Weather</string>
     <string name="action_settings">Налаштування</string>
@@ -30,25 +31,25 @@
     <string name="describe_point">.</string>
     <string name="empty_field">Something</string>
 
-    <!--NOTIFICATION-->
+    <!--Notifications-->
     <string name="notification_ticker">Дступні нові оновлення погоди.</string>
     <string name="notification_text">Оновіть данні.</string>
     <string name="notification_long_text">Натисніть на це повідомлення, щоб перейти в додаток або натисніть на кнопку, щоб просто оновити інформацію про погоду.</string>
     <string name="notification_update_button">Оновити</string>
 
-    <!-- PREFERENCES -->
+    <!-- Preferences -->
     <string name="pref_main_title">Основні</string>
     <string name="pref_main_summary">Головні налаштування</string>
     <string name="pref_city_summary">Оберіть місто</string>
     <string name="pref_city_title">Місто</string>
     <string name="pref_reset_summary">Очистити всі налаштування</string>
     <string name="pref_reset_title">Скинути</string>
-    <string name="pref_notif_cat_summary">Сповіщення.</string>
+    <string name="pref_notif_cat_summary">Сповіщення</string>
     <string name="pref_notif_cat_title">Сповіщення</string>
     <string name="pref_notif_summary_on">Ввімкнути сповіщення</string>
     <string name="pref_notif_summary_off">Вимкнути сповіщення</string>
     <string name="pref_notif_title">Сповіщення</string>
-    <string name="pref_notif_freq_summary">Як часто оновлювати данні.</string>
+    <string name="pref_notif_freq_summary">Як часто оновлювати данні</string>
     <string name="pref_notif_freq_title">Частота</string>
     <string name="pref_notif_sound_type_summary">Звук сповіщення</string>
     <string name="pref_notif_sound_type_title">Звук</string>
@@ -57,7 +58,7 @@
     <string name="pref_language_title">Мова</string>
     <string name="pref_language_summary">Необхідно перезапустити додаток.</string>
     <string name="pref_lang_dialog_title">Виберіть мову:</string>
-    <string name="pref_language_restart">Перезавантаження</string>
+    <string name="pref_language_restart">Перезавантажити</string>
 
     <string-array name="entries_lang">
         <item>Англійска</item>
@@ -72,24 +73,47 @@
         <item>default</item>
     </string-array>
 
+    <!--Dialog-->
+    <string name="exit_dialog_title">Вихід</string>
+    <string name="exit_dialog_message">Для внесення змін необхідно перезавантажити додаток</string>
+    <string name="exit_dialog_yes">Перезапуск</string>
+    <string name="exit_dialog_cancel">Відміна</string>
+
+    <string name="network_dialog_title">Нет содинения</string>
+    <string name="network_dialog_message">Для смены языковых настроек необходимо соединение с Интернетом</string>
+    <string name="network_dialog_message_for_refresh">Для корректного сброса языковых настроек необходимо соединение с Интернетом</string>
+    <string name="network_dialog_cancel">Выход</string>
+
+
+    <!--Toast-->
+    <string name="change_city_wihout_internet">Немає зєднання з інтернетом: ви не можете переглянути прогноз для цього міста</string>
+    <string name="service_update_data">Сервіс оновив дані</string>
+    <string name="no_internet_connect">Немає зєднання з інтернетом</string>
+    <string name="db_download_data">Заватнаження даних з БД</string>
+    <string name="db_no_data">Немає данних в БД</string>
+
+    <!--Notification sound-->
     <string-array name="entries">
         <item>Мелодія</item>
         <item>Тихо</item>
         <item>Вібрація</item>
+        <item>Комбінований</item>
     </string-array>
     <string-array name="entry_values">
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
+    <!--Notification frequency-->
     <string-array name="entries_time">
         <item>1 хв.</item>
         <item>5 хв.</item>
         <item>30 хв.</item>
-        <item>1 г.</item>
-        <item>3 г.</item>
-        <item>12 г. </item>
+        <item>1 год.</item>
+        <item>3 год.</item>
+        <item>12 год. </item>
         <item>раз на добу</item>
     </string-array>
     <string-array name="entry_time_values">
@@ -102,6 +126,7 @@
         <item>86400000 </item>
     </string-array>
 
+    <!--Spinner-->
     <string-array name="test_city">
         <item>Вінниця‎</item>
         <item>Дніпропетровськ</item>
@@ -128,7 +153,6 @@
         <item>Чернівці‎</item>
         <item>Чернігів</item>
     </string-array>
-
     <string-array name="city_id">
         <item>689558‎</item>
         <item>709930</item>

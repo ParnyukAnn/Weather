@@ -1,4 +1,5 @@
-<resources>
+﻿<resources>
+    <!--Titles, main button-->
     <string name="app_name">Sun&amp;Rain</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_detail">DetailActivity</string>
@@ -29,13 +30,13 @@
     <string name="describe_point">.</string>
     <string name="empty_field">Something</string>
 
-    <!--NOTIFICATION-->
+    <!--Notification-->
     <string name="notification_ticker"> New weather updates. </string>
     <string name="notification_text"> Updates available. </string>
     <string name="notification_long_text"> Click on this message to go into the application or just click on the button to update the weather information. </string>
     <string name="notification_update_button"> Update </string>
 
-    <!-- Preferens -->
+    <!-- Preferences -->
     <string name="pref_main_title">Main</string>
     <string name="pref_main_summary">Main settings</string>
     <string name="pref_city_summary">Choose city</string>
@@ -52,6 +53,44 @@
     <string name="pref_notif_sound_type_summary">Sound of notification</string>
     <string name="pref_notif_sound_type_title">Sound</string>
 
+    <!-- Language-->
+    <string name="pref_language_title">Language</string>
+    <string name="pref_language_summary">You need reastart applicationo after choosing language</string>
+    <string name="pref_lang_dialog_title">Choose language:</string>
+    <string name="pref_language_restart">Restart</string>
+
+    <string-array name="entries_lang">
+        <item>English</item>
+        <item>Russian</item>
+        <item>Ukrainian</item>
+        <item>Default language</item>
+    </string-array>
+    <string-array name="entry_values_lang">
+        <item>en</item>
+        <item>ru</item>
+        <item>uk</item>
+        <item>default</item>
+    </string-array>
+
+    <!--Dialog-->
+    <string name="exit_dialog_title">Exit</string>
+    <string name="exit_dialog_message">You need to restart your application to apply the changes</string>
+    <string name="exit_dialog_yes">Restart</string>
+    <string name="exit_dialog_cancel">Cancel</string>
+
+    <string name="network_dialog_title">No internet connection</string>
+    <string name="network_dialog_message">To change language settings you need internet connection</string>
+    <string name="network_dialog_message_for_refresh">You need internet connection for correct reset language preferences</string>
+    <string name="network_dialog_cancel">Cancel</string>
+
+    <!--Toast-->
+    <string name="change_city_wihout_internet">Sorry.There is no internet connection: your can\'t see weather for this city</string>
+    <string name="service_update_data">Service updated data</string>
+    <string name="no_internet_connect">There is no internet connection</string>
+    <string name="db_download_data">Loading data from DB</string>
+    <string name="db_no_data">No data in DB</string>
+
+    <!--Notification sound-->
     <string-array name="entries">
         <item>Silent</item>
         <item>Ringtone</item>
@@ -65,6 +104,7 @@
         <item>4</item>
     </string-array>
 
+    <!--Notification frequency-->
     <string-array name="entries_time">
         <item>1 min.</item>
         <item>5 min.</item>
@@ -84,37 +124,7 @@
         <item>86400000</item>
     </string-array>
 
-    <string name="pref_language_title">Language</string>
-    <string name="pref_language_summary">You need reastart applicationo after choosing language.</string>
-    <string name="pref_lang_dialog_title">Choose language:</string>
-    <string name="pref_language_restart">Restart</string>
-
-
-    <!--Dialog-->
-    <string name="exit_dialog_title">Exit</string>
-    <string name="exit_dialog_message">You need to restart your application to apply the changes</string>
-    <string name="exit_dialog_yes">Restart</string>
-    <string name="exit_dialog_cancel">Cancel</string>
-
-    <string name="network_dialog_title">No internet connection</string>
-    <string name="network_dialog_message">To chance language settings you need internet connection</string>
-    <string name="network_dialog_message_for_refresh">You need internet connection for correct reset language preferences</string>
-    <string name="network_dialog_cancel">Cancel</string>
-
-
-    <string-array name="entries_lang">
-        <item>English</item>
-        <item>Russian</item>
-        <item>Ukrainian</item>
-        <item>Default language</item>
-    </string-array>
-    <string-array name="entry_values_lang">
-        <item>en</item>
-        <item>ru</item>
-        <item>uk</item>
-        <item>default</item>
-    </string-array>
-
+    <!--Spinner-->
     <string-array name="test_city">
         <item>Vinnytsya</item>
         <item>Dnipropetrovsk</item>
@@ -142,30 +152,30 @@
         <item>Chernihiv</item>
     </string-array>
     <string-array name="city_id">
-    <item>689558‎</item>
-    <item>709930</item>
-    <item>709717‎</item>
-    <item>686967</item>
-    <item>687700</item>
-    <item>707471</item>
-    <item>703448‎</item>
-    <item>705812</item>
-    <item>702658</item>
-    <item>702569</item>
-    <item>702550‎</item>
-    <item>700569‎</item>
-    <item>698740</item>
-    <item>696643</item>
-    <item>695594</item>
-    <item>692194‎</item>
-    <item>691650</item>
-    <item>690548</item>
-    <item>706483</item>
-    <item>706448</item>
-    <item>706369</item>
-    <item>710791</item>
-    <item>710719‎</item>
-    <item>710735</item>
+        <item>689558‎</item>
+        <item>709930</item>
+        <item>709717‎</item>
+        <item>686967</item>
+        <item>687700</item>
+        <item>707471</item>
+        <item>703448‎</item>
+        <item>705812</item>
+        <item>702658</item>
+        <item>702569</item>
+        <item>702550‎</item>
+        <item>700569‎</item>
+        <item>698740</item>
+        <item>696643</item>
+        <item>695594</item>
+        <item>692194‎</item>
+        <item>691650</item>
+        <item>690548</item>
+        <item>706483</item>
+        <item>706448</item>
+        <item>706369</item>
+        <item>710791</item>
+        <item>710719‎</item>
+        <item>710735</item>
     </string-array>
     <string name="content_description_arrow_dropdown">Ult</string>
 

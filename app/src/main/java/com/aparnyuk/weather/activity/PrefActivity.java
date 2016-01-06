@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.aparnyuk.weather.R;
@@ -42,22 +43,23 @@ public class PrefActivity extends PreferenceActivity {
                 new Intent(getIntent()), 0);
 
         // Cмена языка приложения
-        Preference lang = (Preference) findPreference("lang");
+        Preference lang = findPreference("lang");
         lang.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object something) {
-                Log.d(TAG, "in Pref change lang");
+                 Log.d(TAG, "in Pref change lang");
                 if (isNetworkAvailable(getBaseContext())) {
                     showDialog(DIALOG_EXIT);
                 } else {
                     showDialog(DIALOG_NO_INT);
+                    return false;
                 }
                 return true;
             }
         });
 
         // Сброс настроек
-        Preference reset = (Preference) findPreference("reset");
+        Preference reset =  findPreference("reset");
         reset.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -72,7 +74,7 @@ public class PrefActivity extends PreferenceActivity {
         });
 
         // Включение-отключение уведомлений
-        Preference notif = (Preference) findPreference("notif");
+        Preference notif = findPreference("notif");
         notif.getOnPreferenceChangeListener();
         notif.setOnPreferenceChangeListener(
                 new Preference.OnPreferenceChangeListener() {
@@ -90,7 +92,7 @@ public class PrefActivity extends PreferenceActivity {
         );
 
         // Установка частоты обновлений
-        Preference notif_freq = (Preference) findPreference("frequency");
+        Preference notif_freq = findPreference("frequency");
         notif_freq.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object something) {
@@ -118,7 +120,7 @@ public class PrefActivity extends PreferenceActivity {
             adb.setTitle(R.string.network_dialog_title);
             adb.setMessage(R.string.network_dialog_message);
             adb.setIcon(android.R.drawable.ic_dialog_info);
-            adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
+            adb.setNegativeButton(R.string.network_dialog_cancel, myClickListener);
             return adb.create();
         }
         if (id == DIALOG_REFRESH) {
@@ -126,7 +128,7 @@ public class PrefActivity extends PreferenceActivity {
             adb.setTitle(R.string.network_dialog_title);
             adb.setMessage(R.string.network_dialog_message_for_refresh);
             adb.setIcon(android.R.drawable.ic_dialog_info);
-            adb.setNeutralButton(R.string.network_dialog_cancel, myClickListener);
+            adb.setNegativeButton(R.string.network_dialog_cancel, myClickListener);
             return adb.create();
         }
         return super.onCreateDialog(id);
@@ -140,6 +142,9 @@ public class PrefActivity extends PreferenceActivity {
                     finish();
                     break;
                 case Dialog.BUTTON_NEGATIVE:
+                  //  finish();
+                    break;
+                case Dialog.BUTTON_NEUTRAL:
                     finish();
                     break;
             }

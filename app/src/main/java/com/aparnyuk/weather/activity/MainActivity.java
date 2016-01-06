@@ -1,7 +1,5 @@
 package com.aparnyuk.weather.activity;
 
-//import com.aparnyuk.weather.fragment.DetailFragment;
-//import com.aparnyuk.weather.fragment.MainFragment.onItemClickListener;
 import com.aparnyuk.weather.fragment.DetailFragment;
 import com.aparnyuk.weather.fragment.MainFragment;
 import com.aparnyuk.weather.R;
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     final String SAVED_CITY = "saved_city";
     public static final String APP_PREFERENCES = "com.aparnyuk.weather";
     Spinner mSpinner;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,18 +54,16 @@ public class MainActivity extends AppCompatActivity
         prefs = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
 
         addSpinner();
-
+        mSpinner.setSelection(loadCity());
         if (savedInstanceState != null) {
             position = savedInstanceState.getInt("position");
             key = savedInstanceState.getString("key");
-            //mSpinner.setSelection(loadCity());
         }
         withDetails = (findViewById(R.id.container) != null);
         if (withDetails) {
             showDetails(position, key);
         }
     }
-
 
     // Add spinner into Toolbar
     private void addSpinner() {
@@ -78,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         mSpinner = (Spinner) findViewById(R.id.spinner_city);
 
         String[] items = getResources().getStringArray(R.array.test_city);
-        List<String> spinnerItems = new ArrayList<String>();
+        List<String> spinnerItems = new ArrayList<>();
 
         for (int i = 0; i < items.length; i++) {
             spinnerItems.add(items[i]);
@@ -90,18 +87,19 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             mSpinner.setDropDownVerticalOffset(-116);
         }
-
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                if (isNetworkAvailable(getBaseContext())) {
-                    saveCity(position);
-                    Log.d(TAG, "in MainActivity - mSpinner.setOnItemSelectedListener call UpdateService");
-                    Intent localIntent = new Intent(getBaseContext(), UpdateService.class);
-                    startService(localIntent);
-                } else {
-                    Toast.makeText(getBaseContext(), "Sorry.There is no internet connection: your can't see weather for this city.", Toast.LENGTH_LONG).show();
+                int pos = loadCity();
+                if (position != pos) {
+                    if (isNetworkAvailable(getBaseContext())) {
+                        saveCity(position);
+                        Intent localIntent = new Intent(getBaseContext(), UpdateService.class);
+                        startService(localIntent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getString(R.string.change_city_wihout_internet), Toast.LENGTH_LONG).show();
+                    }
                 }
             }
 
@@ -111,7 +109,6 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
-
 
 
     void showDetails(int pos, String k) {
@@ -162,14 +159,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this, PrefActivity.class);
-            try {
-                startActivity(intent);
-            } catch (Exception e) {
-            }
+            startActivity(intent);
             return true;
         }
         if (id == R.id.action_refresh) {
-            Log.d(TAG,"in MainActivity - onOptionsItemSelected call UpdateService");
+            Log.d(TAG, "in MainActivity - onOptionsItemSelected call UpdateService");
             Intent localIntent = new Intent(this, UpdateService.class);
             startService(localIntent);
             return true;
@@ -187,12 +181,11 @@ public class MainActivity extends AppCompatActivity
 
     public int loadCity() {
         prefs = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        int savedNum = prefs.getInt(SAVED_CITY, 0);
-        return savedNum;
+        return prefs.getInt(SAVED_CITY, 0);
     }
 
     public boolean isNetworkAvailable(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE));
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting();
     }
 
@@ -217,6 +210,8 @@ public class MainActivity extends AppCompatActivity
                 startService(new Intent(this, NotifyService.class));
             }
             prefs.edit().putBoolean("firstrun", false).apply();
+
+            mSpinner.setSelection(21);
         }
     }
 }

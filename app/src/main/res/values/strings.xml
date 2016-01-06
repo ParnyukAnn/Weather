@@ -1,4 +1,5 @@
 <resources>
+    <!--Titles, main button-->
     <string name="app_name">Sun&amp;Rain</string>
     <string name="app_label">Погода</string>
     <string name="action_settings">Настройки</string>
@@ -30,13 +31,13 @@
     <string name="describe_point">.</string>
     <string name="empty_field">Something</string>
 
-    <!--NOTIFICATION-->
+    <!--Notification-->
     <string name="notification_ticker">Дступны новые обновления погоды.</string>
     <string name="notification_text">Дступны обновления.</string>
     <string name="notification_long_text">Кликните на сообщении чтобы перейти в окно приложения или просто нажмите на кнопку чтобы обновить информацию о погоде.</string>
     <string name="notification_update_button">Обновить</string>
 
-    <!-- PREFERENCES -->
+    <!-- Preferences -->
     <string name="pref_main_title">Основные</string>
     <string name="pref_main_summary">Основные настройки</string>
     <string name="pref_city_summary">Выберите город</string>
@@ -52,6 +53,7 @@
     <string name="pref_notif_freq_title">Частота</string>
     <string name="pref_notif_sound_type_summary">Звук уведомлений</string>
     <string name="pref_notif_sound_type_title">Звук</string>
+
     <!-- Language-->
     <string name="pref_language_title">Язык</string>
     <string name="pref_language_summary">Необходимо перезапустить приложение чтобы изменения вступили в силу</string>
@@ -82,7 +84,14 @@
     <string name="network_dialog_message_for_refresh">Для корректного сброса языковых настроек необходимо соединение с Интернетом</string>
     <string name="network_dialog_cancel">Выход</string>
 
+    <!--Toast-->
+    <string name="change_city_wihout_internet">Отсутсвует соединение с интернетом: вы не можете увидеть погоду для этого города</string>
+    <string name="service_update_data">Сервис обновил данные</string>
+    <string name="no_internet_connect">Нет соединения с Интернетом</string>
+    <string name="db_download_data">Загрузка данных из БД</string>
+    <string name="db_no_data">Нет данных в БД</string>
 
+    <!--Notification sound-->
     <string-array name="entries">
         <item>Тихо</item>
         <item>Рингтон</item>
@@ -96,7 +105,7 @@
         <item>4</item>
     </string-array>
 
-
+    <!--Notification frequency-->
     <string-array name="entries_time">
         <item>1 мин.</item>
         <item>5 мин.</item>
@@ -116,31 +125,56 @@
         <item>86400000</item>
     </string-array>
 
+    <!--Spinner-->
     <string-array name="test_city">
-        <item>Винница</item> <!-- 0 -->
-        <item>Днепропетровск</item> <!-- 1 -->
-        <item>Донецк</item> <!-- 2 -->
-        <item>Житомир</item> <!-- 3 -->
-        <item>Запорожье</item> <!-- 4 -->
-        <item>Ивано-Франковск</item> <!-- 5 -->
-        <item>Kiev</item><!-- 6 -->
-        <item>Кировоград</item> <!-- 7 -->
-        <item>Луганск</item><!-- 8 -->
-        <item>Луцк</item><!-- 9 -->
-        <item>Львов</item><!-- 10 -->
-        <item>Николаев</item><!-- 11  -->
-        <item>Одесса</item><!-- 12 -->
-        <item>Полтава</item><!-- 13 -->
-        <item>Ровно</item><!-- 14 -->
-        <item>Сумы</item><!-- 15 -->
-        <item>Тернополь</item><!-- 16 -->
-        <item>Ужгород</item><!-- 17 -->
-        <item>Харьков</item><!-- 18 -->
-        <item>Херсон</item><!-- 19 -->
-        <item>Хмельницкий </item><!-- 20 -->
-        <item>Черкассы</item><!-- 21 -->
-        <item>Чернигов</item><!-- 22 -->
-        <item>Черновцы</item><!-- 23 -->
+        <item>Винница</item>
+        <!-- 0 -->
+        <item>Днепропетровск</item>
+        <!-- 1 -->
+        <item>Донецк</item>
+        <!-- 2 -->
+        <item>Житомир</item>
+        <!-- 3 -->
+        <item>Запорожье</item>
+        <!-- 4 -->
+        <item>Ивано-Франковск</item>
+        <!-- 5 -->
+        <item>Kiev</item>
+        <!-- 6 -->
+        <item>Кировоград</item>
+        <!-- 7 -->
+        <item>Луганск</item>
+        <!-- 8 -->
+        <item>Луцк</item>
+        <!-- 9 -->
+        <item>Львов</item>
+        <!-- 10 -->
+        <item>Николаев</item>
+        <!-- 11  -->
+        <item>Одесса</item>
+        <!-- 12 -->
+        <item>Полтава</item>
+        <!-- 13 -->
+        <item>Ровно</item>
+        <!-- 14 -->
+        <item>Сумы</item>
+        <!-- 15 -->
+        <item>Тернополь</item>
+        <!-- 16 -->
+        <item>Ужгород</item>
+        <!-- 17 -->
+        <item>Харьков</item>
+        <!-- 18 -->
+        <item>Херсон</item>
+        <!-- 19 -->
+        <item>Хмельницкий </item>
+        <!-- 20 -->
+        <item>Черкассы</item>
+        <!-- 21 -->
+        <item>Чернигов</item>
+        <!-- 22 -->
+        <item>Черновцы</item>
+        <!-- 23 -->
     </string-array>
     <string-array name="city_id">
         <item>689558‎</item>
